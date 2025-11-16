@@ -144,3 +144,7 @@ D:\repositorios\aplications-repositorios\crafting-tasks-app\craftingTask\obj\Deb
 D:\repositorios\aplications-repositorios\crafting-tasks-app\craftingTask\obj\Debug\net8.0-windows\view\windows\windows_dialogs\board_dialogs\DeleteBoardsDialog.g.cs
 D:\repositorios\aplications-repositorios\crafting-tasks-app\craftingTask\obj\Debug\net8.0-windows\view\windows\windows_dialogs\board_dialogs\CreateBoardDialog.baml
 D:\repositorios\aplications-repositorios\crafting-tasks-app\craftingTask\obj\Debug\net8.0-windows\view\windows\windows_dialogs\board_dialogs\DeleteBoardsDialog.baml
+D:\repositorios\aplications-repositorios\crafting-tasks-app\craftingTask\obj\Debug\net8.0-windows\view\windows\windows_dialogs\panel_dialogs\CreatePanelDialog.g.cs
+D:\repositorios\aplications-repositorios\crafting-tasks-app\craftingTask\obj\Debug\net8.0-windows\view\windows\windows_dialogs\panel_dialogs\DeletePanelsDialog.g.cs
+D:\repositorios\aplications-repositorios\crafting-tasks-app\craftingTask\obj\Debug\net8.0-windows\view\windows\windows_dialogs\panel_dialogs\CreatePanelDialog.baml
+D:\repositorios\aplications-repositorios\crafting-tasks-app\craftingTask\obj\Debug\net8.0-windows\view\windows\windows_dialogs\panel_dialogs\DeletePanelsDialog.baml

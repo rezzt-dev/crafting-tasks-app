@@ -16,5 +16,5 @@ D:\repositorios\aplications-repositorios\crafting-tasks-app\craftingTask\App.xam
 202-60592395
 resources\drawable\ModernColorPicker.xaml;view\frame_pages\BoardPage.xaml;view\windows\MainWindow.xaml;view\windows\windows_dialogs\board_dialogs\CreateBoardDialog.xaml;view\windows\windows_dialogs\board_dialogs\DeleteBoardsDialog.xaml;view\windows\windows_dialogs\panel_dialogs\CreatePanelDialog.xaml;view\windows\windows_dialogs\panel_dialogs\DeletePanelsDialog.xaml;
 
-True
+False
 

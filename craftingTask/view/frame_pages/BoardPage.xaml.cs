@@ -1,6 +1,8 @@
 ﻿using craftingTask.model.objects;
 using craftingTask.persistence;
 using craftingTask.persistence.managers;
+using craftingTask.view.windows.windows_dialogs;
+using craftingTask.view.windows.windows_dialogs.panel_dialogs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -40,7 +42,7 @@ namespace craftingTask.view.frame_pages
       DataContext = this;
     }
 
-    private void btnCloseBoardFrame (object sender, RoutedEventArgs e)
+    private void btnCloseBoardFrame(object sender, RoutedEventArgs e)
     {
       Frame? parentFrame = HelpMethods.FindParentFrame(this);
       if (parentFrame != null)
@@ -49,9 +51,10 @@ namespace craftingTask.view.frame_pages
       }
     }
 
-    private void LoadPanels (long inputBoardId)
+    private void LoadPanels(long inputBoardId)
     {
       PanelList.Clear();
+      BoardPanels.Clear();
 
       PanelManager panelManager = new PanelManager();
       List<Panel> loadedPanels = panelManager.GetAllPanelsFromBoard(inputBoardId);
@@ -61,9 +64,29 @@ namespace craftingTask.view.frame_pages
         if (auxPanel.Name.ToLower() != "archivadas")
         {
           Panel sndAuxPanel = new Panel(auxPanel.PanelId, auxPanel.BoardId, auxPanel.Name, auxPanel.Order, auxPanel.Color, auxPanel.CreationDate);
+
           PanelList.Add(sndAuxPanel);
+          BoardPanels.Add(sndAuxPanel);
         }
       }
+    }
+
+    private void btnCreatePanel_Click(object sender, RoutedEventArgs e)
+    {
+      CreatePanelDialog createPanelDialog = new CreatePanelDialog(selectedBoard);
+      if (createPanelDialog.ShowDialog() == true)
+      {
+        LoadPanels(selectedBoard.BoardId);
+      }
+    }
+
+    private void btnDeletePanels_Click(object sender, RoutedEventArgs e)
+    {
+      var excludedNames = new[] { "Realizadas", "En Progreso", "Pendientes", "Archivadas" };
+      var filtered = PanelList.Where(p => !excludedNames.Contains(p.Name)).ToList();
+
+      DeletePanelsDialog deletePanelsDialog = new DeletePanelsDialog(PanelList, filtered);
+      deletePanelsDialog.ShowDialog();
     }
   }
 }

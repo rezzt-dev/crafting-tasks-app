@@ -31,7 +31,7 @@ namespace craftingTask.model.objects
       this.PanelId = LastPanelId;
     }
 
-    public Panel(string inputName)
+    public Panel(string inputName, string inputColor)
     {
       panelManager = new PanelManager();
       panelList = new List<Panel>();
@@ -39,6 +39,7 @@ namespace craftingTask.model.objects
       LastPanelId = panelManager.GetPanelLastId();
       this.PanelId = LastPanelId;
       this.Name = inputName;
+      this.Color = inputColor;
     }
 
     public Panel (long inputBoardId, string inputName, string inputColor)

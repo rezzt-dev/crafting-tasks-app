@@ -3,10 +3,99 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:craftingTask.view.windows.windows_dialogs.panel_dialogs"
+        xmlns:local="clr-namespace:craftingTask.view.windows.windows_dialogs"
+        xmlns:local2="clr-namespace:craftingTask.resources.drawable"
         mc:Ignorable="d"
-        Title="CreatePanelDialog" Height="450" Width="800">
+        Title="CreatePanelDialog" Height="600" Width="600" WindowStartupLocation="CenterScreen" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}">
+  <Border Background="{StaticResource MainBackground}" CornerRadius="12">
     <Grid>
-        
+      <Grid.RowDefinitions>
+        <RowDefinition Height="22"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+
+      <Grid x:Name="titleBar" Grid.Row="0">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="22"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="minimizeButton" Click="btnMinimizeWindow_Click" Style="{StaticResource MinimizeWindowButton}" Grid.Column="1" Width="auto" Height="auto" Margin="4,6,6,4"/>
+      </Grid>
+
+      <Grid x:Name="content" Grid.Row="1">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="*"/>
+          <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Margin="5" CornerRadius="12">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="0.5*"/>
+              <RowDefinition Height="0.5*"/>
+              <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="5,30,5,5">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+              </Grid.RowDefinitions>
+
+              <TextBlock Grid.Row="0" Text="NOMBRE DEL PANEL" FontSize="24" FontWeight="DemiBold" Foreground="{StaticResource MainForeground}"
+             VerticalAlignment="Bottom" Margin="15,0,0,5"/>
+              <TextBox x:Name="txtPanelNameSelector" Grid.Row="1" FontSize="18" FontWeight="Normal" VerticalAlignment="Top" Margin="5,0,5,10" Style="{StaticResource PanelTextBoxStyle}"
+           Height="35"/>
+              <Border Grid.Row="1" VerticalAlignment="Bottom" Background="{StaticResource SecondaryBackground}" Width="Auto" Height="2"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Margin="5,10,5,5">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+              </Grid.RowDefinitions>
+
+              <TextBlock Grid.Row="0" Text="COLOR DEL PANEL" FontSize="24" FontWeight="DemiBold" Foreground="{StaticResource MainForeground}"
+             VerticalAlignment="Bottom" Margin="15,0,0,5"/>
+              <Grid Grid.Row="1" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="50"/>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Background="{StaticResource SecondaryBackground}" BorderBrush="{StaticResource MainBorderColor}" BorderThickness="1"
+            CornerRadius="6" Width="35" Height="35">
+                  <Border Background="{Binding SelectedColorBrush, RelativeSource={RelativeSource AncestorType=Window}}" Margin="2" CornerRadius="4" 
+                          BorderBrush="{StaticResource MainBorderColor}" BorderThickness="1"/>
+                </Border>
+
+                <TextBox x:Name="txtColorSelector" Grid.Column="1" FontSize="18" FontWeight="Normal" Margin="5" Style="{StaticResource ColorSelectorTextBoxStyle}"
+                         IsReadOnly="True" Height="35" Text="{Binding SelectedColorHex, RelativeSource={RelativeSource AncestorType=Window}}"/>
+                <Button x:Name="btnColorOpen" Grid.Column="2" Width="40" Height="40" Style="{StaticResource FunctionButtonStyle}" Click="BtnOpenColor_Click">
+                  <TextBlock Text="🎨" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Button>
+                <Popup x:Name="ColorPopup" PlacementTarget="{Binding ElementName=btnColorOpen}" Closed="ColorPopup_Closed" StaysOpen="False" AllowsTransparency="True">
+                  <local2:ModernColorPicker x:Name="ModernPicker"/>
+                </Popup>
+              </Grid>
+              <Border Grid.Row="1" VerticalAlignment="Bottom" Background="{StaticResource SecondaryBackground}" Width="Auto" Height="2"/>
+            </Grid>
+          </Grid>
+        </Border>
+
+        <Grid Grid.Row="1">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+
+          <Button x:Name="btnCancelCreation" Content="Cancelar" Style="{StaticResource FunctionButtonStyle}" Margin="4,4,2,4"
+          VerticalAlignment="Center" Padding="0,4" Click="btnCancelCreation_Click" Grid.Column="0"/>
+          <Button x:Name="btnCreatePanel" Content="Crear Tablero" Style="{StaticResource FunctionButtonStyle}" Margin="2,4,4,4"
+          VerticalAlignment="Center" Padding="0,4" Click="btnCreatePanel_Click" Grid.Column="1"/>
+        </Grid>
+      </Grid>
     </Grid>
+  </Border>
 </Window>

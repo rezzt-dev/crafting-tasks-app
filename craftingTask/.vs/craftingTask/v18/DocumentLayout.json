@@ -1,7 +1,16 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\repositorios\\aplications-repositorios\\crafting-tasks-app\\craftingTask\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{09ECE376-A387-4454-BFE0-5A879FB3096B}|craftingTask.csproj|d:\\repositorios\\aplications-repositorios\\crafting-tasks-app\\craftingtask\\view\\frame_pages\\boardpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{09ECE376-A387-4454-BFE0-5A879FB3096B}|craftingTask.csproj|solutionrelative:view\\frame_pages\\boardpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09ECE376-A387-4454-BFE0-5A879FB3096B}|craftingTask.csproj|d:\\repositorios\\aplications-repositorios\\crafting-tasks-app\\craftingtask\\view\\windows\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{09ECE376-A387-4454-BFE0-5A879FB3096B}|craftingTask.csproj|solutionrelative:view\\windows\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +18,35 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BoardPage.xaml",
+              "DocumentMoniker": "D:\\repositorios\\aplications-repositorios\\crafting-tasks-app\\craftingTask\\view\\frame_pages\\BoardPage.xaml",
+              "RelativeDocumentMoniker": "view\\frame_pages\\BoardPage.xaml",
+              "ToolTip": "D:\\repositorios\\aplications-repositorios\\crafting-tasks-app\\craftingTask\\view\\frame_pages\\BoardPage.xaml",
+              "RelativeToolTip": "view\\frame_pages\\BoardPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-16T17:09:26.878Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "D:\\repositorios\\aplications-repositorios\\crafting-tasks-app\\craftingTask\\view\\windows\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "view\\windows\\MainWindow.xaml",
+              "ToolTip": "D:\\repositorios\\aplications-repositorios\\crafting-tasks-app\\craftingTask\\view\\windows\\MainWindow.xaml",
+              "RelativeToolTip": "view\\windows\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-16T17:08:22.786Z",
+              "EditorCaption": ""
             }
           ]
         }

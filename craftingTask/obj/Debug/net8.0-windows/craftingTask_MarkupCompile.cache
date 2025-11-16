@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 D:\repositorios\aplications-repositorios\crafting-tasks-app\craftingTask\App.xaml
-5934217302
+71133236933
 
-20934350572
+221347535850
 202-60592395
-resources\drawable\ModernColorPicker.xaml;view\frame_pages\BoardPage.xaml;view\windows\MainWindow.xaml;view\windows\windows_dialogs\board_dialogs\CreateBoardDialog.xaml;view\windows\windows_dialogs\board_dialogs\DeleteBoardsDialog.xaml;
+resources\drawable\ModernColorPicker.xaml;view\frame_pages\BoardPage.xaml;view\windows\MainWindow.xaml;view\windows\windows_dialogs\board_dialogs\CreateBoardDialog.xaml;view\windows\windows_dialogs\board_dialogs\DeleteBoardsDialog.xaml;view\windows\windows_dialogs\panel_dialogs\CreatePanelDialog.xaml;view\windows\windows_dialogs\panel_dialogs\DeletePanelsDialog.xaml;
 
 False
 

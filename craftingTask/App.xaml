@@ -359,7 +359,7 @@
     </Style>
 
 
-    <!-- ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁ estilo para los textbox ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁ -->
+    <!-- ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁ estilo para los textbox de tableros ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁ -->
     <Style x:Key="RoundedTextBoxStyle" TargetType="TextBox">
       <Setter Property="Background" Value="{StaticResource SecondaryBackground}" />
       <Setter Property="Foreground" Value="{StaticResource SecondaryForeground}" />
@@ -408,6 +408,7 @@
       </Setter>
     </Style>
 
+    
 
     <!-- ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁ estilo para el selector de color ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁ -->
     <Style x:Key="ColorSelectorTextBoxStyle" TargetType="TextBox">
@@ -507,7 +508,48 @@
       </Setter>
     </Style>
 
-    
+
+    <!-- ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁ estilo de textbox para los paneles ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁ -->
+    <Style x:Key="PanelTextBoxStyle" TargetType="TextBox" BasedOn="{StaticResource SimpleDarkTextBoxStyle}">
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="TextBox">
+            <Grid>
+              <Border x:Name="Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="6"/>
+              <TextBlock x:Name="Placeholder" Text="Escribe Aquí el Nombre del Panel" Foreground="#555" Margin="10,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False" Visibility="Collapsed"/>
+              <ScrollViewer x:Name="PART_ContentHost" Background="Transparent"/>
+            </Grid>
+
+            <ControlTemplate.Triggers>
+              <MultiTrigger>
+                <MultiTrigger.Conditions>
+                  <Condition Property="Text" Value=""/>
+                  <Condition Property="IsKeyboardFocused" Value="False"/>
+                </MultiTrigger.Conditions>
+                <Setter TargetName="Placeholder" Property="Visibility" Value="Visible"/>
+              </MultiTrigger>
+
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="Border" Property="BorderBrush" Value="#3A3A3A"/>
+              </Trigger>
+
+              <Trigger Property="IsKeyboardFocused" Value="True">
+                <Setter TargetName="Border" Property="BorderBrush" Value="#5F5F5F"/>
+                <Setter Property="BorderThickness" Value="2"/>
+                <Setter TargetName="Placeholder" Property="Visibility" Value="Collapsed"/>
+              </Trigger>
+
+              <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="Border" Property="Opacity" Value="0.5"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+
     <!-- ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁ conjunto de estilos para el selector de colores POPUP ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁ -->
     <Style x:Key="PopupButtonStyle" TargetType="Button" BasedOn="{StaticResource FunctionButtonStyle}">
       <Setter Property="Width" Value="70"/>
