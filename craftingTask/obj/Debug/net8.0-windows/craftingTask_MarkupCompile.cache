@@ -1,20 +1,20 @@
 ﻿craftingTask
-
+1.0.0.0
 
 winexe
 C#
 .cs
-C:\Users\rezzt\personal-data\develop-projects\programms-project\crafting-task-projects\craftingTask\obj\Debug\net8.0-windows\
+D:\repositorios\aplications-repositorios\crafting-tasks-app\craftingTask\obj\Debug\net8.0-windows\
 craftingTask
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
-C:\Users\rezzt\personal-data\develop-projects\programms-project\crafting-task-projects\craftingTask\App.xaml
+D:\repositorios\aplications-repositorios\crafting-tasks-app\craftingTask\App.xaml
 2842104422
 
-16-923817656
+18-1141896139
 202-60592395
 view\frame_pages\BoardPage.xaml;view\windows\MainWindow.xaml;
 
-False
+True
 

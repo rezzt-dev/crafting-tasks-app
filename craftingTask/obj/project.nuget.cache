@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wCZI+NYMliY=",
+  "dgSpecHash": "QeiYZFEyK0s=",
   "success": true,
-  "projectFilePath": "C:\\Users\\rezzt\\personal-data\\develop-projects\\programms-project\\crafting-task-projects\\craftingTask\\craftingTask.csproj",
+  "projectFilePath": "D:\\repositorios\\aplications-repositorios\\crafting-tasks-app\\craftingTask\\craftingTask.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rezzt\\.nuget\\packages\\microsoft.data.sqlite.core\\9.0.10\\microsoft.data.sqlite.core.9.0.10.nupkg.sha512",
     "C:\\Users\\rezzt\\.nuget\\packages\\sqlite\\3.13.0\\sqlite.3.13.0.nupkg.sha512",

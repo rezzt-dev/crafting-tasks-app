@@ -370,11 +370,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rezzt\\personal-data\\develop-projects\\programms-project\\crafting-task-projects\\craftingTask\\craftingTask.csproj",
+      "projectUniqueName": "D:\\repositorios\\aplications-repositorios\\crafting-tasks-app\\craftingTask\\craftingTask.csproj",
       "projectName": "craftingTask",
-      "projectPath": "C:\\Users\\rezzt\\personal-data\\develop-projects\\programms-project\\crafting-task-projects\\craftingTask\\craftingTask.csproj",
+      "projectPath": "D:\\repositorios\\aplications-repositorios\\crafting-tasks-app\\craftingTask\\craftingTask.csproj",
       "packagesPath": "C:\\Users\\rezzt\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rezzt\\personal-data\\develop-projects\\programms-project\\crafting-task-projects\\craftingTask\\obj\\",
+      "outputPath": "D:\\repositorios\\aplications-repositorios\\crafting-tasks-app\\craftingTask\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
