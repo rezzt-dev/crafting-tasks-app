@@ -9,22 +9,34 @@
   <Border Background="{StaticResource MainBackground}" CornerRadius="12">
     <Grid>
       <Grid.RowDefinitions>
-        <RowDefinition Height="22"/>
+        <RowDefinition Height="35"/>
         <RowDefinition Height="*"/>
       </Grid.RowDefinitions>
 
       <Grid x:Name="titleBar" Grid.Row="0">
         <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="*"/>
-          <ColumnDefinition Width="20"/>
-          <ColumnDefinition Width="20"/>
-          <ColumnDefinition Width="20"/>
+          <ColumnDefinition Width="200"/>
+          <ColumnDefinition Width="161*"/>
+          <ColumnDefinition Width="1231*"/>
+          <ColumnDefinition Width="25"/>
+          <ColumnDefinition Width="25"/>
+          <ColumnDefinition Width="25"/>
           <ColumnDefinition Width="3"/>
         </Grid.ColumnDefinitions>
 
-        <Button x:Name="minimizeButton" Click="btnMinimizeWindow" Style="{StaticResource MinimizeWindowButton}" Grid.Column="1" Width="auto" Height="auto" Margin="3,5,3,3"/>
-        <Button x:Name="maximizeButton" Click="btnMaximizeWindow" Style="{StaticResource MaximizeWindowButton}" Grid.Column="2" Width="auto" Height="auto" Margin="3,5,3,3"/>
-        <Button x:Name="closeButton" Click="btnCloseWindow" Style="{StaticResource CloseWindowButton}" Grid.Column="3" Width="auto" Height="auto" Margin="3,5,3,3"/>
+        <Button x:Name="btnCalendarView" Style="{StaticResource FunctionButtonStyle}" Grid.Column="0" Content="Calendario" FontSize="10" 
+                Padding="5,2" Margin="5" Click="btnCalendarView_Click"/>
+
+        <Grid Grid.Column="3" Grid.ColumnSpan="3">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <Button x:Name="minimizeButton" Click="btnMinimizeWindow" Style="{StaticResource MinimizeWindowButton}" Grid.Column="0" Width="15" Height="15"/>
+          <Button x:Name="maximizeButton" Click="btnMaximizeWindow" Style="{StaticResource MaximizeWindowButton}" Grid.Column="1" Width="15" Height="15"/>
+          <Button x:Name="closeButton" Click="btnCloseWindow" Style="{StaticResource CloseWindowButton}" Grid.Column="2" Width="15" Height="15"/>
+        </Grid>
       </Grid>
 
       <Grid x:Name="contentArea" Grid.Row="1" Margin="5">
@@ -84,8 +96,8 @@
         </Border>
         <TextBlock Name="welcomeMessage" Grid.Column="1" Text="Welcome to Kadro" FontFamily="Poppins" FontSize="28"
                    VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{StaticResource BackgroundForeground}"/>
-        <Frame Name="boardsFrame" Grid.Column="1" Margin="5,10,10,10" NavigationUIVisibility="Hidden">
-          
+        <Frame Name="boardsFrame" Grid.Column="1" Margin="5,10,10,10" NavigationUIVisibility="Hidden" Navigated="BoardsFrame_Navigated">
+
         </Frame>
       </Grid>
     </Grid>

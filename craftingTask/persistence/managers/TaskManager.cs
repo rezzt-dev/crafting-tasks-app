@@ -173,5 +173,21 @@ namespace craftingTask.persistence.managers
         return new List<model.objects.Task>();
       }
     }
+
+    public List<model.objects.Task> GetAllTasks()
+    {
+      try
+      {
+        using (var broker = new DBBroker())
+        {
+          return broker.ExecuteQuery<model.objects.Task>("SELECT * FROM Task");
+        }
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show("Error al obtener tareas: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        return new List<model.objects.Task>();
+      }
+    }
   }
 }

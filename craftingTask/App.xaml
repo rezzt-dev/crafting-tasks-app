@@ -1065,5 +1065,9 @@
         </Setter.Value>
       </Setter>
     </Style>
+
+
+    <!-- ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁ estilo de calendar para la vista de calendario ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁ -->
+    
   </Application.Resources>
 </Application>

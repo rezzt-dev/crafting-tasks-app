@@ -1,7 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\repositorios\\aplications-repositorios\\crafting-tasks-app\\craftingTask\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{09ECE376-A387-4454-BFE0-5A879FB3096B}|craftingTask.csproj|d:\\repositorios\\aplications-repositorios\\crafting-tasks-app\\craftingtask\\view\\frame_pages\\calendarpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{09ECE376-A387-4454-BFE0-5A879FB3096B}|craftingTask.csproj|solutionrelative:view\\frame_pages\\calendarpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +14,23 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CalendarPage.xaml",
+              "DocumentMoniker": "D:\\repositorios\\aplications-repositorios\\crafting-tasks-app\\craftingTask\\view\\frame_pages\\CalendarPage.xaml",
+              "RelativeDocumentMoniker": "view\\frame_pages\\CalendarPage.xaml",
+              "ToolTip": "D:\\repositorios\\aplications-repositorios\\crafting-tasks-app\\craftingTask\\view\\frame_pages\\CalendarPage.xaml",
+              "RelativeToolTip": "view\\frame_pages\\CalendarPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-17T23:14:01.907Z",
+              "EditorCaption": ""
             }
           ]
         }

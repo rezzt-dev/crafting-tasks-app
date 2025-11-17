@@ -5,11 +5,13 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:craftingTask.view.frame_pages"
       xmlns:dd="clr-namespace:GongSolutions.Wpf.DragDrop;assembly=GongSolutions.Wpf.DragDrop" xmlns:local1="clr-namespace:craftingTask.view.helpers"
+      xmlns:local2="clr-namespace:craftingTask.persistence"
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="1200"
       Title="BoardPage">
 
   <Page.Resources>
+    <local2:PriorityToStringConverter x:Key="PriorityToStringConverter" />
     <DataTemplate x:Key="DefaultAdornerTemplate">
       <Border Background="{StaticResource TaskBackground}" BorderBrush="{Binding Color}" BorderThickness="1" CornerRadius="10" 
               Padding="16" Margin="6" Opacity="1" Width="300">
@@ -34,7 +36,7 @@
           <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="6">
             <Border CornerRadius="6" Padding="6,2" Margin="6,0,8,0" BorderBrush="{StaticResource TaskPriorityBorder}" 
                     Background="#10FFFFFF">
-              <TextBlock Text="{Binding Priority}" Foreground="{StaticResource TaskPriorityForeground}" FontSize="12" 
+              <TextBlock Text="{Binding Priority, Converter={StaticResource PriorityToStringConverter}}" Foreground="{StaticResource TaskPriorityForeground}" FontSize="12" 
                          FontWeight="Medium"/>
             </Border>
             <Border CornerRadius="6" Padding="6,2" BorderBrush="{StaticResource TaskTagBorder}" 
@@ -184,9 +186,8 @@
                     <ListBox.ItemTemplate>
                       <DataTemplate>
 
-                        <Border Background="{StaticResource TaskBackground}"
-                        BorderBrush="{Binding Color}" BorderThickness="1"
-                        CornerRadius="10" Padding="16" Margin="6,6,6,14">
+                        <Border Background="{StaticResource TaskBackground}" BorderBrush="{Binding Color}" BorderThickness="1"
+                                CornerRadius="10" Padding="16" Margin="6,6,6,14">
 
                           <Grid>
                             <Grid.RowDefinitions>
@@ -215,7 +216,7 @@
                               <Border CornerRadius="6" Padding="6,2" Margin="6,0,8,0"
                               BorderBrush="{StaticResource TaskPriorityBorder}"
                               Background="#10FFFFFF">
-                                <TextBlock Text="{Binding Priority}"
+                                <TextBlock Text="{Binding Priority, Converter={StaticResource PriorityToStringConverter}}"
                                    Foreground="{StaticResource TaskPriorityForeground}"
                                    FontSize="12" FontWeight="Medium" />
                               </Border>

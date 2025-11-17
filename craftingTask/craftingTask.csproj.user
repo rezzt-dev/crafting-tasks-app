@@ -8,6 +8,9 @@
     <Compile Update="view\frame_pages\BoardPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="view\frame_pages\CalendarPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="view\windows\windows_dialogs\board_dialogs\CreateBoardDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

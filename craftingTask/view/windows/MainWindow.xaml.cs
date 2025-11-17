@@ -34,7 +34,15 @@ namespace craftingTask
       DataContext = this;
     }
 
-    private void btnMinimizeWindow (object sender, RoutedEventArgs e)
+    private void BoardsFrame_Navigated(object sender, NavigationEventArgs e)
+    {
+      if (e.Content is CalendarPage)
+        btnCalendarView.IsEnabled = false;
+      else
+        btnCalendarView.IsEnabled = true;
+    }
+
+    private void btnMinimizeWindow(object sender, RoutedEventArgs e)
     {
       this.WindowState = WindowState.Minimized;
     }
@@ -44,7 +52,8 @@ namespace craftingTask
       if (this.WindowState == WindowState.Maximized)
       {
         this.WindowState = WindowState.Normal;
-      } else
+      }
+      else
       {
         this.WindowState = WindowState.Maximized;
       }
@@ -79,6 +88,12 @@ namespace craftingTask
     {
       DeleteBoardsDialog deleteBoardsDialog = new DeleteBoardsDialog(BoardList);
       deleteBoardsDialog.ShowDialog();
+    }
+
+    private void btnCalendarView_Click(object sender, RoutedEventArgs e)
+    {
+      CalendarPage calendarPage = new CalendarPage();
+      this.boardsFrame.Navigate(calendarPage);
     }
   }
 }
