@@ -1,4 +1,4 @@
-﻿D:\repositorios\aplications-repositorios\crafting-tasks-app\craftingTask\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+﻿
 FD:\repositorios\aplications-repositorios\crafting-tasks-app\craftingTask\App.xaml;;
 FD:\repositorios\aplications-repositorios\crafting-tasks-app\craftingTask\resources\drawable\ModernColorPicker.xaml;;
 FD:\repositorios\aplications-repositorios\crafting-tasks-app\craftingTask\view\frame_pages\BoardPage.xaml;;
@@ -12,4 +12,5 @@ FD:\repositorios\aplications-repositorios\crafting-tasks-app\craftingTask\view\w
 FD:\repositorios\aplications-repositorios\crafting-tasks-app\craftingTask\view\windows\windows_dialogs\task_dialogs\ArchiveTaskDialog.xaml;;
 FD:\repositorios\aplications-repositorios\crafting-tasks-app\craftingTask\view\windows\windows_dialogs\task_dialogs\CreateTaskDialog.xaml;;
 FD:\repositorios\aplications-repositorios\crafting-tasks-app\craftingTask\view\windows\windows_dialogs\task_dialogs\ShowTaskArchive.xaml;;
+FD:\repositorios\aplications-repositorios\crafting-tasks-app\craftingTask\view\windows\windows_dialogs\task_dialogs\TaskDetailsDialog.xaml;;
 

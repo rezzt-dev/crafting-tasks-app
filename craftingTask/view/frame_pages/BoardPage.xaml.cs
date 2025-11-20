@@ -37,6 +37,7 @@ namespace craftingTask.view.frame_pages
     private ObservableCollection<Panel> BoardPanels { get; set; } = new ObservableCollection<Panel>();
     public ObservableCollection<Panel> PanelList { get; set; }
     public TaskDropHandler DefaultDropHandler { get; private set; }
+    public ICommand TaskDoubleClickCommand { get; private set; }
 
     public BoardPage(Board inputSelectedBoard)
     {
@@ -45,6 +46,8 @@ namespace craftingTask.view.frame_pages
 
       this.PanelList = new ObservableCollection<Panel>();
       LoadPanels(selectedBoard.BoardId);
+
+      TaskDoubleClickCommand = new RelayCommand(OnTaskDoubleClick);
       DataContext = this;
 
       DefaultDropHandler = new TaskDropHandler(BoardPanels);
@@ -239,6 +242,44 @@ namespace craftingTask.view.frame_pages
         foreach (var t in tasks)
           panel.TaskList.Add(t);
       }
+    }
+
+    private void OnTaskDoubleClick(object parameter)
+    {
+      if (parameter is Task task)
+      {
+        TaskDetailsDialog taskDetailsDialog = new TaskDetailsDialog(task);
+        taskDetailsDialog.ShowDialog();
+      }
+    }
+  }
+
+  // Helper class for ICommand implementation
+  public class RelayCommand : ICommand
+  {
+    private readonly Action<object> _execute;
+    private readonly Func<object, bool> _canExecute;
+
+    public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
+    {
+      _execute = execute ?? throw new ArgumentNullException(nameof(execute));
+      _canExecute = canExecute;
+    }
+
+    public event EventHandler CanExecuteChanged
+    {
+      add { CommandManager.RequerySuggested += value; }
+      remove { CommandManager.RequerySuggested -= value; }
+    }
+
+    public bool CanExecute(object parameter)
+    {
+      return _canExecute == null || _canExecute(parameter);
+    }
+
+    public void Execute(object parameter)
+    {
+      _execute(parameter);
     }
   }
 }

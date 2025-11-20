@@ -248,3 +248,5 @@ D:\repositorios\aplications-repositorios\crafting-tasks-app\craftingTask\obj\Deb
 D:\repositorios\aplications-repositorios\crafting-tasks-app\craftingTask\obj\Debug\net8.0-windows\craftingTask.pdb
 D:\repositorios\aplications-repositorios\crafting-tasks-app\craftingTask\obj\Debug\net8.0-windows\craftingTask.genruntimeconfig.cache
 D:\repositorios\aplications-repositorios\crafting-tasks-app\craftingTask\obj\Debug\net8.0-windows\ref\craftingTask.dll
+D:\repositorios\aplications-repositorios\crafting-tasks-app\craftingTask\obj\Debug\net8.0-windows\view\windows\windows_dialogs\task_dialogs\TaskDetailsDialog.g.cs
+D:\repositorios\aplications-repositorios\crafting-tasks-app\craftingTask\obj\Debug\net8.0-windows\view\windows\windows_dialogs\task_dialogs\TaskDetailsDialog.baml
