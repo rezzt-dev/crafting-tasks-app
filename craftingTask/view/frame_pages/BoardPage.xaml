@@ -11,9 +11,9 @@
         </Border.Effect>
         <Grid>
           <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
           </Grid.RowDefinitions>
           <StackPanel Grid.Row="0" Margin="0,0,0,10">
             <TextBlock FontSize="17" FontWeight="SemiBold" Foreground="{StaticResource TaskTitleForeground}" Text="{Binding Title}" TextWrapping="Wrap" />
@@ -32,43 +32,47 @@
       </Border>
     </DataTemplate>
   </Page.Resources>
+
   <Border Background="{StaticResource SecondaryBackground}" CornerRadius="10">
     <Grid Margin="5">
       <Grid.RowDefinitions>
-        <RowDefinition Height="30" />
-        <RowDefinition Height="*" />
-        <RowDefinition Height="30" />
+        <RowDefinition Height="30"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="30"/>
       </Grid.RowDefinitions>
+
       <Grid Grid.Row="0">
         <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="*" />
-          <ColumnDefinition Width="30" />
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="30"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0" Margin="0,0,10,0">
           <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.8*" />
-            <ColumnDefinition Width="0.8*" />
-            <ColumnDefinition Width="0.8*" />
-            <ColumnDefinition Width="1.5*" />
+            <ColumnDefinition Width="0.8*"/>
+            <ColumnDefinition Width="0.8*"/>
+            <ColumnDefinition Width="0.8*"/>
+            <ColumnDefinition Width="1.5*"/>
           </Grid.ColumnDefinitions>
           <Button x:Name="btnCreateTask" Grid.Column="0" Margin="0,0,2.5,0" Padding="0,4" VerticalAlignment="Center" Click="btnCreateTask_Click" Content="Crear Tarea" Style="{StaticResource FunctionButtonStyle}" />
           <Button x:Name="btnArchiveTasks" Grid.Column="1" Margin="2.5,0,0,0" Padding="0,4" VerticalAlignment="Center" Click="btnArchiveTasks_Click" Content="Archivar Tareas" Style="{StaticResource FunctionButtonStyle}" />
         </Grid>
         <Button x:Name="btnCloseFrame" Grid.Column="1" Width="15" Height="15" Margin="3" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnCloseBoardFrame" Style="{StaticResource CloseFrameButton}" />
       </Grid>
+
       <Grid Grid.Row="2">
         <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="1.2*" />
-          <ColumnDefinition Width="1.2*" />
-          <ColumnDefinition Width="3.5*" />
-          <ColumnDefinition Width="1.2*" />
+          <ColumnDefinition Width="1.2*"/>
+          <ColumnDefinition Width="1.2*"/>
+          <ColumnDefinition Width="3.5*"/>
+          <ColumnDefinition Width="1.2*"/>
         </Grid.ColumnDefinitions>
         <Button x:Name="btnCreatePanel" Grid.Column="0" Margin="0,0,2.5,0" Padding="50,4" VerticalAlignment="Center" Click="btnCreatePanel_Click" Content="Crear Panel" Style="{StaticResource FunctionButtonStyle}" />
         <Button x:Name="btnDeletePanels" Grid.Column="1" Margin="2.5,0,0,0" Padding="50,4" VerticalAlignment="Center" Click="btnDeletePanels_Click" Content="Borrar Paneles" Style="{StaticResource FunctionButtonStyle}" />
         <Button x:Name="btnShowArchiveTasks" Grid.Column="3" Padding="50,4" HorizontalAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Click="btnShowArchiveTasks_Click" Content="Ver Archivo" Style="{StaticResource FunctionButtonStyle}" />
       </Grid>
+
       <Grid Grid.Row="1">
-        <ListBox x:Name="panelListBox" Margin="0" HorizontalContentAlignment="Stretch" Background="Transparent" BorderThickness="0" ItemsSource="{Binding PanelList}" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled" SelectionMode="Single">
+        <ListBox x:Name="panelListBox" Margin="0" HorizontalContentAlignment="Stretch" dd:DragDrop.DropHandler="{Binding PanelDropHandler}" dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True" dd:DragDrop.UseDefaultDragAdorner="True" Background="Transparent" BorderThickness="0" ItemsSource="{Binding PanelList}" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled" SelectionMode="Single">
           <ListBox.Resources>
             <Style BasedOn="{StaticResource DarkHorizontalScrollBarStyle}" TargetType="ScrollBar" />
           </ListBox.Resources>
@@ -93,14 +97,15 @@
               </Setter>
             </Style>
           </ListBox.ItemContainerStyle>
+
           <ListBox.ItemTemplate>
             <DataTemplate>
               <Border Width="350" Margin="10" Padding="10" Background="{StaticResource PanelBackground}" BorderBrush="{Binding Color}" BorderThickness="2" CornerRadius="12">
                 <Grid>
                   <Grid.RowDefinitions>
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="5" />
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="5"/>
                   </Grid.RowDefinitions>
                   <TextBlock Grid.Row="0" Margin="0,0,0,10" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="{Binding Color}" Text="{Binding Name}" />
                   <ListBox Grid.Row="1" Margin="5" dd:DragDrop.DragAdornerTemplate="{StaticResource DefaultAdornerTemplate}" dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True" dd:DragDrop.UseDefaultDragAdorner="True" Background="{StaticResource PanelBackground}" BorderThickness="0" ItemsSource="{Binding TaskList}" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto">
@@ -128,6 +133,7 @@
                         </Setter>
                       </Style>
                     </ListBox.ItemContainerStyle>
+
                     <ListBox.ItemTemplate>
                       <DataTemplate>
                         <Border Margin="6,6,6,14" Padding="16" Background="{StaticResource TaskBackground}" BorderBrush="{Binding Color}" BorderThickness="1" CornerRadius="10" Cursor="Hand">
@@ -136,9 +142,9 @@
                           </Border.InputBindings>
                           <Grid>
                             <Grid.RowDefinitions>
-                              <RowDefinition Height="Auto" />
-                              <RowDefinition Height="Auto" />
-                              <RowDefinition Height="Auto" />
+                              <RowDefinition Height="Auto"/>
+                              <RowDefinition Height="Auto"/>
+                              <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <StackPanel Grid.Row="0" Margin="0,0,0,10">
                               <TextBlock FontSize="17" FontWeight="SemiBold" Foreground="{StaticResource TaskTitleForeground}" Text="{Binding Title}" TextWrapping="Wrap" />
@@ -163,6 +169,10 @@
             </DataTemplate>
           </ListBox.ItemTemplate>
         </ListBox>
+
+        <Border Width="40" Height="40" Margin="0,0,10,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" dd:DragDrop.DropHandler="{Binding TrashDropHandler}" dd:DragDrop.IsDropTarget="True" Background="#101010" BorderBrush="#A0A0A0" BorderThickness="2" CornerRadius="10">
+          <Path Width="20" Height="20" Data="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" Fill="White" Stretch="Uniform" />
+        </Border>
       </Grid>
     </Grid>
   </Border>

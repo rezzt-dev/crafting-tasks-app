@@ -128,8 +128,9 @@ namespace craftingTask
       this.boardsFrame.Navigate(remindersPage);
     }
 
-    private void btnOpenSearch_Click(object sender, RoutedEventArgs e)
+    private async void btnOpenSearch_Click(object sender, RoutedEventArgs e)
     {
+      await System.Threading.Tasks.Task.Delay(50);
       var searchWindow = new SearchWindow();
       searchWindow.ShowDialog();
     }

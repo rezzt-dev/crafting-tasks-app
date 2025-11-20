@@ -30,6 +30,10 @@ namespace craftingTask.view.helpers
       {
         dropInfo.Effects = DragDropEffects.Move;
       }
+      else
+      {
+        dropInfo.NotHandled = true;
+      }
     }
 
     public void Drop(IDropInfo dropInfo)
@@ -49,6 +53,10 @@ namespace craftingTask.view.helpers
           task.MoveToPanel(targetPanel);
           targetPanel.TaskList.Add(task);
         }
+      }
+      else
+      {
+        dropInfo.NotHandled = true;
       }
     }
   }

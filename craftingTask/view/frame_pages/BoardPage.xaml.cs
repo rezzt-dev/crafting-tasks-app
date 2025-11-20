@@ -37,6 +37,8 @@ namespace craftingTask.view.frame_pages
     private ObservableCollection<Panel> BoardPanels { get; set; } = new ObservableCollection<Panel>();
     public ObservableCollection<Panel> PanelList { get; set; }
     public TaskDropHandler DefaultDropHandler { get; private set; }
+    public TrashDropHandler TrashDropHandler { get; private set; }
+    public PanelDropHandler PanelDropHandler { get; private set; }
     public ICommand TaskDoubleClickCommand { get; private set; }
 
     public BoardPage(Board inputSelectedBoard)
@@ -51,6 +53,11 @@ namespace craftingTask.view.frame_pages
       DataContext = this;
 
       DefaultDropHandler = new TaskDropHandler(BoardPanels);
+      TrashDropHandler = new TrashDropHandler();
+      PanelDropHandler = new PanelDropHandler(() =>
+      {
+        LoadPanels(selectedBoard.BoardId);
+      });
       this.Loaded += (s, e) =>
       {
         foreach (var panel in PanelList)

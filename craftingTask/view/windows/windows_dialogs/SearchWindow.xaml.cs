@@ -23,6 +23,7 @@ namespace craftingTask.view.windows.windows_dialogs
     public SearchWindow()
     {
       InitializeComponent();
+      this.Dispatcher.Invoke(() => this.UpdateLayout(), System.Windows.Threading.DispatcherPriority.Loaded);
 
       searchService = new TaskSearchService();
       boardManager = new BoardManager();
@@ -123,7 +124,15 @@ namespace craftingTask.view.windows.windows_dialogs
 
       // Perform search
       searchResults = searchService.Search(criteria);
-      dgResults.ItemsSource = searchResults;
+
+      // Actualizar ItemsSource en el hilo de UI para evitar errores visuales
+      Dispatcher.Invoke(() =>
+      {
+        lstResults.ItemsSource = null;  // Primero desasignar para limpiar posibles inconsistencias
+        lstResults.ItemsSource = searchResults;
+        lstResults.InvalidateVisual();  // Forzar invalidación visual
+        lstResults.UpdateLayout();      // Forzar actualización de layout
+      });
     }
 
     private void btnClear_Click(object sender, RoutedEventArgs e)
@@ -141,7 +150,7 @@ namespace craftingTask.view.windows.windows_dialogs
       lstPanels.SelectedItems.Clear();
       lstBoards.SelectedItems.Clear();
       cmbSavedFilters.SelectedIndex = -1;
-      dgResults.ItemsSource = null;
+      lstResults.ItemsSource = null;
       searchResults.Clear();
     }
 
@@ -275,9 +284,9 @@ namespace craftingTask.view.windows.windows_dialogs
       // Auto-search on keyword change (optional)
     }
 
-    private void dgResults_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+    private void lstResults_MouseDoubleClick(object sender, MouseButtonEventArgs e)
     {
-      if (dgResults.SelectedItem is model.objects.Task selectedTask)
+      if (lstResults.SelectedItem is model.objects.Task selectedTask)
       {
         MessageBox.Show($"Tarea seleccionada: {selectedTask.Title}\nID: {selectedTask.TaskId}\nPanel ID: {selectedTask.PanelId}",
                         "Información de Tarea", MessageBoxButton.OK, MessageBoxImage.Information);

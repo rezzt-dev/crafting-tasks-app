@@ -135,7 +135,7 @@ namespace craftingTask.persistence.managers
                 { "@BoardId", inputBoardId }
             };
 
-          return broker.ExecuteQuery<Panel>("SELECT * FROM Panel WHERE BoardId = @BoardId", parameters);
+          return broker.ExecuteQuery<Panel>("SELECT * FROM Panel WHERE BoardId = @BoardId ORDER BY [Order]", parameters);
         }
       }
       catch (Exception ex)

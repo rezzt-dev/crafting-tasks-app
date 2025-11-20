@@ -1,11 +1,8 @@
-<Window x:Class="craftingTask.view.windows.windows_dialogs.SearchWindow"
-  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  Title="Búsqueda Avanzada" Width="900" Height="750"
-  AllowsTransparency="True" Background="{x:Null}"
-  WindowStartupLocation="CenterScreen" WindowStyle="None" mc:Ignorable="d">
+<Window x:Class="craftingTask.view.windows.windows_dialogs.SearchWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:persistence="clr-namespace:craftingTask.persistence" Title="Búsqueda Avanzada" Width="900" Height="780" AllowsTransparency="True" Background="{x:Null}" WindowStartupLocation="CenterScreen" WindowStyle="None" mc:Ignorable="d">
+  <Window.Resources>
+    <persistence:PriorityToStringConverter x:Key="PriorityToStringConverter" />
+  </Window.Resources>
+
   <Border Background="{StaticResource MainBackground}" CornerRadius="12">
     <Grid>
       <Grid.RowDefinitions>
@@ -13,58 +10,40 @@
         <RowDefinition Height="*" />
       </Grid.RowDefinitions>
 
-      <!--  Title Bar  -->
       <Grid x:Name="titleBar" Grid.Row="0">
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="*" />
           <ColumnDefinition Width="22" />
           <ColumnDefinition Width="22" />
         </Grid.ColumnDefinitions>
-        <Button x:Name="minimizeButton" Grid.Column="1" Width="auto"
-          Height="auto" Margin="4,6,6,4" Click="btnMinimizeWindowClick"
-          Style="{StaticResource MinimizeWindowButton}" />
-        <Button x:Name="closeButton" Grid.Column="2" Width="auto" Height="auto"
-          Margin="4,6,6,4" Click="btnCloseWindowClick"
-          Style="{StaticResource CloseWindowButton}" />
+        <Button x:Name="minimizeButton" Grid.Column="1" Width="12" Height="12" Margin="4,6,6,4" Click="btnMinimizeWindowClick" Style="{StaticResource MinimizeWindowButton}" />
+        <Button x:Name="closeButton" Grid.Column="2" Width="12" Height="12" Margin="4,6,6,4" Click="btnCloseWindowClick" Style="{StaticResource CloseWindowButton}" />
       </Grid>
 
-      <!--  Main Content  -->
       <Grid x:Name="content" Grid.Row="1">
         <Grid.RowDefinitions>
           <RowDefinition Height="Auto" />
           <RowDefinition Height="*" />
-          <RowDefinition Height="40" />
+          <RowDefinition Height="45" />
         </Grid.RowDefinitions>
 
-        <!--  Search Criteria Panel  -->
-        <ScrollViewer Grid.Row="0" MaxHeight="350"
-          VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Grid.Row="0" MaxHeight="350" VerticalScrollBarVisibility="Auto">
           <ScrollViewer.Resources>
-            <Style TargetType="ScrollBar" BasedOn="{StaticResource DarkScrollBarStyle}" />
+            <Style BasedOn="{StaticResource DarkScrollBarStyle}" TargetType="ScrollBar" />
           </ScrollViewer.Resources>
           <Border Margin="10" CornerRadius="12">
             <StackPanel>
-              <!--  Title  -->
-              <TextBlock Margin="15,20,15,10" FontSize="28" FontWeight="Bold"
-                Foreground="{StaticResource MainForeground}"
-                Text="BÚSQUEDA AVANZADA" />
+              <TextBlock Margin="15,20,15,10" FontSize="28" FontWeight="Bold" Foreground="{StaticResource MainForeground}" Text="BÚSQUEDA AVANZADA" />
 
-              <!--  Keyword Search  -->
               <Grid Margin="15,10">
                 <Grid.RowDefinitions>
                   <RowDefinition Height="Auto" />
                   <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Margin="0,0,0,5" FontSize="16"
-                  FontWeight="SemiBold"
-                  Foreground="{StaticResource MainForeground}"
-                  Text="PALABRA CLAVE" />
-                <TextBox x:Name="txtKeyword" Grid.Row="1" Height="35"
-                  FontSize="16" Style="{StaticResource TaskTitleDarkTextBox}"
-                  TextChanged="txtKeyword_TextChanged" />
+                <TextBlock Grid.Row="0" Margin="0,0,0,5" FontSize="16" FontWeight="SemiBold" Foreground="{StaticResource MainForeground}" Text="PALABRA CLAVE" />
+                <TextBox x:Name="txtKeyword" Grid.Row="1" Height="35" FontSize="16" Style="{StaticResource TaskTitleDarkTextBox}" TextChanged="txtKeyword_TextChanged" />
               </Grid>
 
-              <!--  Filters Row 1: Priority and Status  -->
               <Grid Margin="15,10">
                 <Grid.ColumnDefinitions>
                   <ColumnDefinition Width="*" />
@@ -72,32 +51,17 @@
                   <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <!--  Priority Filter  -->
                 <StackPanel Grid.Column="0">
-                  <TextBlock Margin="0,0,0,5" FontSize="16"
-                    FontWeight="SemiBold"
-                    Foreground="{StaticResource MainForeground}"
-                    Text="PRIORIDAD" />
-                  <ListBox x:Name="lstPriorities" Height="130" Style="{StaticResource ModernDarkListBoxStyle}" ItemContainerStyle="{StaticResource ModernDarkListBoxItemStyle}"
-                    Background="{StaticResource SecondaryBackground}"
-                    Foreground="{StaticResource MainForeground}"
-                    SelectionMode="Multiple" />
+                  <TextBlock Margin="0,0,0,5" FontSize="16" FontWeight="SemiBold" Foreground="{StaticResource MainForeground}" Text="PRIORIDAD" />
+                  <ListBox x:Name="lstPriorities" Height="130" Background="{StaticResource SecondaryBackground}" Foreground="{StaticResource MainForeground}" ItemContainerStyle="{StaticResource ModernDarkListBoxItemStyle}" SelectionMode="Multiple" Style="{StaticResource ModernDarkListBoxStyle}" />
                 </StackPanel>
 
-                <!--  Status Filter  -->
                 <StackPanel Grid.Column="2">
-                  <TextBlock Margin="0,0,0,5" FontSize="16"
-                    FontWeight="SemiBold"
-                    Foreground="{StaticResource MainForeground}"
-                    Text="ESTADO" />
-                  <ListBox x:Name="lstStatus" Height="130" Style="{StaticResource ModernDarkListBoxStyle}" ItemContainerStyle="{StaticResource ModernDarkListBoxItemStyle}"
-                    Background="{StaticResource SecondaryBackground}"
-                    Foreground="{StaticResource MainForeground}"
-                    SelectionMode="Multiple" />
+                  <TextBlock Margin="0,0,0,5" FontSize="16" FontWeight="SemiBold" Foreground="{StaticResource MainForeground}" Text="ESTADO" />
+                  <ListBox x:Name="lstStatus" Height="130" Background="{StaticResource SecondaryBackground}" Foreground="{StaticResource MainForeground}" ItemContainerStyle="{StaticResource ModernDarkListBoxItemStyle}" SelectionMode="Multiple" Style="{StaticResource ModernDarkListBoxStyle}" />
                 </StackPanel>
               </Grid>
 
-              <!--  Filters Row 2: Date Range  -->
               <Grid Margin="15,10">
                 <Grid.ColumnDefinitions>
                   <ColumnDefinition Width="*" />
@@ -105,28 +69,17 @@
                   <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <!--  Start Date  -->
                 <StackPanel Grid.Column="0">
-                  <TextBlock Margin="0,0,0,5" FontSize="16"
-                    FontWeight="SemiBold"
-                    Foreground="{StaticResource MainForeground}"
-                    Text="FECHA INICIO" />
-                  <DatePicker x:Name="dpStartDate" Height="35" FontSize="16"
-                    Style="{StaticResource SimpleDarkDatePickerStyle}" />
+                  <TextBlock Margin="0,0,0,5" FontSize="16" FontWeight="SemiBold" Foreground="{StaticResource MainForeground}" Text="FECHA INICIO" />
+                  <DatePicker x:Name="dpStartDate" Height="35" FontSize="16" Style="{StaticResource SimpleDarkDatePickerStyle}" />
                 </StackPanel>
 
-                <!--  End Date  -->
                 <StackPanel Grid.Column="2">
-                  <TextBlock Margin="0,0,0,5" FontSize="16"
-                    FontWeight="SemiBold"
-                    Foreground="{StaticResource MainForeground}"
-                    Text="FECHA FIN" />
-                  <DatePicker x:Name="dpEndDate" Height="35" FontSize="16"
-                    Style="{StaticResource SimpleDarkDatePickerStyle}" />
+                  <TextBlock Margin="0,0,0,5" FontSize="16" FontWeight="SemiBold" Foreground="{StaticResource MainForeground}" Text="FECHA FIN" />
+                  <DatePicker x:Name="dpEndDate" Height="35" FontSize="16" Style="{StaticResource SimpleDarkDatePickerStyle}" />
                 </StackPanel>
               </Grid>
 
-              <!--  Filters Row 3: Panel and Board  -->
               <Grid Margin="15,10">
                 <Grid.ColumnDefinitions>
                   <ColumnDefinition Width="*" />
@@ -134,33 +87,17 @@
                   <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <!--  Panel Filter  -->
                 <StackPanel Grid.Column="0">
-                  <TextBlock Margin="0,0,0,5" FontSize="16"
-                    FontWeight="SemiBold"
-                    Foreground="{StaticResource MainForeground}" Text="PANEL" />
-                  <ListBox x:Name="lstPanels" Height="100"
-                    Background="{StaticResource SecondaryBackground}"
-                    DisplayMemberPath="Name"
-                    Foreground="{StaticResource MainForeground}"
-                    SelectionMode="Multiple" />
+                  <TextBlock Margin="0,0,0,5" FontSize="16" FontWeight="SemiBold" Foreground="{StaticResource MainForeground}" Text="PANEL" />
+                  <ListBox x:Name="lstPanels" Height="100" Background="{StaticResource SecondaryBackground}" DisplayMemberPath="Name" Foreground="{StaticResource MainForeground}" SelectionMode="Multiple" />
                 </StackPanel>
 
-                <!--  Board Filter  -->
                 <StackPanel Grid.Column="2">
-                  <TextBlock Margin="0,0,0,5" FontSize="16"
-                    FontWeight="SemiBold"
-                    Foreground="{StaticResource MainForeground}"
-                    Text="TABLERO" />
-                  <ListBox x:Name="lstBoards" Height="100"
-                    Background="{StaticResource SecondaryBackground}"
-                    DisplayMemberPath="Name"
-                    Foreground="{StaticResource MainForeground}"
-                    SelectionMode="Multiple" />
+                  <TextBlock Margin="0,0,0,5" FontSize="16" FontWeight="SemiBold" Foreground="{StaticResource MainForeground}" Text="TABLERO" />
+                  <ListBox x:Name="lstBoards" Height="100" Background="{StaticResource SecondaryBackground}" DisplayMemberPath="Name" Foreground="{StaticResource MainForeground}" SelectionMode="Multiple" />
                 </StackPanel>
               </Grid>
 
-              <!--  Saved Filters  -->
               <Grid Margin="15,10">
                 <Grid.ColumnDefinitions>
                   <ColumnDefinition Width="2*" />
@@ -169,86 +106,92 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0">
-                  <TextBlock Margin="0,0,0,5" FontSize="16"
-                    FontWeight="SemiBold"
-                    Foreground="{StaticResource MainForeground}"
-                    Text="FILTROS GUARDADOS" />
-                  <ComboBox x:Name="cmbSavedFilters" Height="35"
-                    DisplayMemberPath="Name" FontSize="16"
-                    SelectionChanged="cmbSavedFilters_SelectionChanged"
-                    Style="{StaticResource DarkSimpleComboBox}" />
+                  <TextBlock Margin="0,0,0,5" FontSize="16" FontWeight="SemiBold" Foreground="{StaticResource MainForeground}" Text="FILTROS GUARDADOS" />
+                  <ComboBox x:Name="cmbSavedFilters" Height="35" DisplayMemberPath="Name" FontSize="16" SelectionChanged="cmbSavedFilters_SelectionChanged" Style="{StaticResource DarkSimpleComboBox}" />
                 </StackPanel>
 
                 <StackPanel Grid.Column="2">
                   <TextBlock Margin="0,0,0,5" FontSize="16" Text=" " />
-                  <Button x:Name="btnSaveFilter" Height="35"
-                    Click="btnSaveFilter_Click" Content="Guardar Filtro"
-                    Style="{StaticResource FunctionButtonStyle}" />
+                  <Button x:Name="btnSaveFilter" Height="35" Content="Guardar Filtro" Click="btnSaveFilter_Click" Style="{StaticResource FunctionButtonStyle}" />
                 </StackPanel>
               </Grid>
-
             </StackPanel>
           </Border>
         </ScrollViewer>
 
-        <!--  Results Grid  -->
-        <Border Grid.Row="1" Margin="10,10,10,10"
-          Background="{StaticResource SecondaryBackground}" CornerRadius="12">
+        <Border Grid.Row="1" Margin="10" Background="{StaticResource SecondaryBackground}" CornerRadius="12">
           <Grid>
             <Grid.RowDefinitions>
               <RowDefinition Height="Auto" />
               <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Margin="15,10" FontSize="20"
-              FontWeight="Bold" Foreground="{StaticResource MainForeground}"
-              Text="RESULTADOS" />
+            <TextBlock Grid.Row="0" Margin="15,10" FontSize="20" FontWeight="Bold" Foreground="{StaticResource MainForeground}" Text="RESULTADOS" />
 
-            <DataGrid x:Name="dgResults" Grid.Row="1" Margin="10"
-              AlternatingRowBackground="{StaticResource MainBackground}"
-              AutoGenerateColumns="False"
-              Background="{StaticResource SecondaryBackground}"
-              BorderThickness="0" CanUserAddRows="False"
-              Foreground="{StaticResource MainForeground}"
-              GridLinesVisibility="None" HeadersVisibility="Column"
-              IsReadOnly="True" MouseDoubleClick="dgResults_MouseDoubleClick"
-              RowBackground="{StaticResource SecondaryBackground}"
-              SelectionMode="Single" Style="{StaticResource ModernDarkDataGridStyle}" ColumnHeaderStyle="{StaticResource ModernDarkDataGridColumnHeaderStyle}"
-              CellStyle="{StaticResource ModernDarkDataGridCellStyle}" RowStyle="{StaticResource ModernDarkDataGridRowStyle}">
-              <DataGrid.Columns>
-                <DataGridTextColumn Width="2*" Binding="{Binding Title}"
-                  Header="Título" />
-                <DataGridTextColumn Width="2*" Binding="{Binding Description}"
-                  Header="Descripción" />
-                <DataGridTextColumn Width="*" Binding="{Binding Tag}"
-                  Header="Tag" />
-                <DataGridTextColumn Width="*" Binding="{Binding Priority}"
-                  Header="Prioridad" />
-                <DataGridTextColumn Width="*"
-                  Binding="{Binding EndDate, StringFormat=\{0:dd/MM/yyyy\}}"
-                  Header="Fecha Límite" />
-              </DataGrid.Columns>
-            </DataGrid>
+            <ListBox x:Name="lstResults" Grid.Row="1" Margin="10" HorizontalContentAlignment="Stretch" Background="Transparent" BorderThickness="0" MouseDoubleClick="lstResults_MouseDoubleClick" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto">
+              <ListBox.Resources>
+                <Style BasedOn="{StaticResource DarkScrollBarStyle}" TargetType="ScrollBar" />
+              </ListBox.Resources>
+
+              <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                  <Setter Property="Margin" Value="5" />
+                  <Setter Property="Padding" Value="0" />
+                  <Setter Property="Background" Value="Transparent" />
+                  <Setter Property="BorderThickness" Value="0" />
+                  <Setter Property="HorizontalAlignment" Value="Stretch" />
+                  <Setter Property="Template">
+                    <Setter.Value>
+                      <ControlTemplate TargetType="ListBoxItem">
+                        <ContentPresenter />
+                      </ControlTemplate>
+                    </Setter.Value>
+                  </Setter>
+                </Style>
+              </ListBox.ItemContainerStyle>
+
+              <ListBox.ItemTemplate>
+                <DataTemplate>
+                  <Border Margin="0" Padding="16" HorizontalAlignment="Stretch" Background="{StaticResource TaskBackground}" BorderBrush="{Binding Color}" BorderThickness="1" CornerRadius="10" Cursor="Hand">
+                    <Grid>
+                      <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                      </Grid.RowDefinitions>
+
+                      <StackPanel Grid.Row="0" Margin="0,0,0,10">
+                        <TextBlock FontSize="17" FontWeight="SemiBold" Foreground="{StaticResource TaskTitleForeground}" Text="{Binding Title}" TextWrapping="Wrap" />
+                        <TextBlock Margin="0,2,0,0" FontSize="12" Foreground="{StaticResource TaskEndDateForeground}" Text="{Binding EndDate}" />
+                      </StackPanel>
+
+                      <Border Grid.Row="1" Height="1" Margin="0,0,0,10" Background="{StaticResource TaskBorder}" Opacity="0.25" />
+
+                      <StackPanel Grid.Row="2" Margin="6" HorizontalAlignment="Right" Orientation="Horizontal">
+                        <Border Margin="6,0,8,0" Padding="6,2" Background="#10FFFFFF" BorderBrush="{StaticResource TaskPriorityBorder}" CornerRadius="6">
+                          <TextBlock FontSize="12" FontWeight="Medium" Foreground="{StaticResource TaskPriorityForeground}" Text="{Binding Priority, Converter={StaticResource PriorityToStringConverter}}" />
+                        </Border>
+                        <Border Padding="6,2" Background="{StaticResource TaskTagBackground}" BorderBrush="{StaticResource TaskTagBorder}" CornerRadius="6">
+                          <TextBlock FontSize="11" Foreground="{StaticResource TaskTagForeground}" Text="{Binding Tag}" />
+                        </Border>
+                      </StackPanel>
+                    </Grid>
+                  </Border>
+                </DataTemplate>
+              </ListBox.ItemTemplate>
+            </ListBox>
           </Grid>
         </Border>
 
-        <!--  Action Buttons  -->
         <Grid Grid.Row="2">
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
           </Grid.ColumnDefinitions>
-
-          <Button x:Name="btnClear" Grid.Column="0" Margin="10,4,5,4"
-            Click="btnClear_Click" Content="Limpiar"
-            Style="{StaticResource FunctionButtonStyle}" />
-          <Button x:Name="btnSearch" Grid.Column="1" Margin="5,4"
-            Click="btnSearch_Click" Content="Buscar"
-            Style="{StaticResource FunctionButtonStyle}" />
-          <Button x:Name="btnClose" Grid.Column="2" Margin="5,4,10,4"
-            Click="btnClose_Click" Content="Cerrar"
-            Style="{StaticResource FunctionButtonStyle}" />
+          <Button x:Name="btnClear" Grid.Column="0" Margin="10,4,5,4" Content="Limpiar" Click="btnClear_Click" Style="{StaticResource FunctionButtonStyle}" />
+          <Button x:Name="btnSearch" Grid.Column="1" Margin="5,4" Content="Buscar" Click="btnSearch_Click" Style="{StaticResource FunctionButtonStyle}" />
+          <Button x:Name="btnClose" Grid.Column="2" Margin="5,4,10,4" Content="Cerrar" Click="btnClose_Click" Style="{StaticResource FunctionButtonStyle}" />
         </Grid>
       </Grid>
     </Grid>
