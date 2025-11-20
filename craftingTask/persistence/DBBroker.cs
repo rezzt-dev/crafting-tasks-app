@@ -13,9 +13,10 @@ namespace craftingTask.persistence
     private readonly string _connectionString;
     private SqliteConnection _connection;
 
-    public DBBroker ()
+    public DBBroker()
     {
       Batteries.Init();
+      DatabaseInitializer.EnsureDatabaseExists();
       _connectionString = $"Data Source=CTDatabase.db;";
       _connection = new SqliteConnection(_connectionString);
     }
@@ -118,7 +119,7 @@ namespace craftingTask.persistence
       return obj;
     }
 
-    public int ExecuteNonQuery (string query, Dictionary<string, object> parameters = null)
+    public int ExecuteNonQuery(string query, Dictionary<string, object> parameters = null)
     {
       int affectedRows = 0;
 
@@ -137,7 +138,8 @@ namespace craftingTask.persistence
 
           affectedRows = command.ExecuteNonQuery();
         }
-      } catch (Exception ex)
+      }
+      catch (Exception ex)
       {
         throw new Exception($"Error ejecutando comando: {ex.Message}", ex);
       }
@@ -145,7 +147,7 @@ namespace craftingTask.persistence
       return affectedRows;
     }
 
-    public object ExecuteScalar (string query, Dictionary<string, object> parameters = null)
+    public object ExecuteScalar(string query, Dictionary<string, object> parameters = null)
     {
       object result = null;
 
@@ -164,7 +166,8 @@ namespace craftingTask.persistence
 
           result = command.ExecuteScalar();
         }
-      } catch (Exception ex)
+      }
+      catch (Exception ex)
       {
         throw new Exception($"Error ejecutando consulta escalar: {ex.Message}", ex);
       }

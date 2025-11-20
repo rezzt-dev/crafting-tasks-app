@@ -11,8 +11,8 @@ false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 D:\repositorios\aplications-repositorios\crafting-tasks-app\craftingTask\App.xaml
 141846269835
-1-1859723543
-45-1136766462
+21258726286
+461322652292
 205-1402139669
 resources\drawable\ModernColorPicker.xaml;view\frame_pages\BoardPage.xaml;view\frame_pages\CalendarPage.xaml;view\frame_pages\RemindersPage.xaml;view\windows\MainWindow.xaml;view\windows\windows_dialogs\board_dialogs\CreateBoardDialog.xaml;view\windows\windows_dialogs\board_dialogs\DeleteBoardsDialog.xaml;view\windows\windows_dialogs\panel_dialogs\CreatePanelDialog.xaml;view\windows\windows_dialogs\panel_dialogs\DeletePanelsDialog.xaml;view\windows\windows_dialogs\SearchWindow.xaml;view\windows\windows_dialogs\task_dialogs\ArchiveTaskDialog.xaml;view\windows\windows_dialogs\task_dialogs\CreateTaskDialog.xaml;view\windows\windows_dialogs\task_dialogs\ShowTaskArchive.xaml;view\windows\windows_dialogs\task_dialogs\TaskDetailsDialog.xaml;
 
