@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Collections.ObjectModel;
 
 namespace craftingTask.model.objects
 {
@@ -15,19 +16,20 @@ namespace craftingTask.model.objects
     public string Description { get; set; }
     public string Tag { get; set; }
     public DateTime CreationDate { get; set; }
-    public DateTime EndDate {  get; set; }
+    public DateTime EndDate { get; set; }
     public int Priority { get; set; }
     public long StatusId { get; set; }
     public string Color { get; set; }
+    public ObservableCollection<Subtask> Subtasks { get; set; } = new ObservableCollection<Subtask>();
 
-    private List<Task> taskList {  get; set; }
+    private List<Task> taskList { get; set; }
     private long LastTaskId { get; set; }
     private TaskManager taskManager { get; set; }
 
-    public Task ()
+    public Task()
     {
-      taskManager = new TaskManager ();
-      taskList = new List<Task> ();
+      taskManager = new TaskManager();
+      taskList = new List<Task>();
 
       this.LastTaskId = taskManager.GetTaskLastId();
       this.TaskId = LastTaskId;
@@ -53,7 +55,7 @@ namespace craftingTask.model.objects
       this.EndDate = inputEndDate ?? this.CreationDate.AddDays(7);
     }
 
-    public Task (long inputPanelId, string inputTitle, string inputDescription, string inputTag, 
+    public Task(long inputPanelId, string inputTitle, string inputDescription, string inputTag,
       DateTime inputCreationDate, int inputPriority, long inputStatusId, string inputColor)
     {
       taskManager = new TaskManager();
@@ -108,17 +110,17 @@ namespace craftingTask.model.objects
       this.Color = inputColor;
     }
 
-    public void Add ()
+    public void Add()
     {
       taskManager = new TaskManager();
       taskManager.AddTask(this);
     }
-    public void Update ()
+    public void Update()
     {
       taskManager = new TaskManager();
       taskManager.UpdateTask(this);
     }
-    public void Remove ()
+    public void Remove()
     {
       taskManager = new TaskManager();
       taskManager.RemoveTask(this);
@@ -144,13 +146,13 @@ namespace craftingTask.model.objects
       taskManager = new TaskManager();
       taskManager.UpdateTaskState(this, 4, this.PanelId, "#4D96FF");
     }
-    public void UpdateStateCustom(string inputPanelColor,long inputPanelId, long inputStatusId)
+    public void UpdateStateCustom(string inputPanelColor, long inputPanelId, long inputStatusId)
     {
       taskManager = new TaskManager();
       taskManager.UpdateTaskState(this, inputStatusId, inputPanelId, inputPanelColor);
     }
 
-    public void MoveToPanel (Panel inputTargetPanel)
+    public void MoveToPanel(Panel inputTargetPanel)
     {
       this.PanelId = inputTargetPanel.PanelId;
       this.Color = inputTargetPanel.Color;

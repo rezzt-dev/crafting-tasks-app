@@ -152,8 +152,8 @@ namespace craftingTask
     private async void btnOpenSearch_Click(object sender, RoutedEventArgs e)
     {
       await System.Threading.Tasks.Task.Delay(50);
-      var searchWindow = new SearchWindow();
-      searchWindow.ShowDialog();
+      SearchFilterPage searchFilterPage = new SearchFilterPage();
+      this.boardsFrame.Navigate(searchFilterPage);
     }
 
     #endregion

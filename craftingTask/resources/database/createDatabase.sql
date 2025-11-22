@@ -48,6 +48,28 @@ CREATE TABLE IF NOT EXISTS Task (
 		ON UPDATE CASCADE
 );
 
+-- TABLA SUBTASK -------------------------------------
+CREATE TABLE IF NOT EXISTS Subtask (
+  SubtaskId INTEGER PRIMARY KEY AUTOINCREMENT,
+  ParentTaskId INTEGER NOT NULL,
+  Title TEXT NOT NULL,
+  IsCompleted INTEGER DEFAULT 0, -- 0: No, 1: Sí
+  "Order" INTEGER NOT NULL,
+  FOREIGN KEY (ParentTaskId) REFERENCES Task(TaskId) ON DELETE CASCADE
+);
+
+-- TABLA ATTACHMENT -------------------------------------
+CREATE TABLE Attachment (
+  Id INTEGER PRIMARY KEY AUTOINCREMENT,
+  TaskId INTEGER NOT NULL,
+  FileName TEXT NOT NULL,
+  ContentType TEXT NOT NULL,
+  FilePath TEXT,
+  Data BLOB,
+  CreatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (TaskId) REFERENCES Task(Id)
+);
+
 -- INDICES PARA OPTIMIZAR CONSULTAS ---------------
 CREATE INDEX IF NOT EXISTS idx_panel_board ON Panel(BoardId);
 CREATE INDEX IF NOT EXISTS idx_task_panel ON Task(PanelId);
@@ -56,6 +78,9 @@ CREATE INDEX IF NOT EXISTS idx_task_title ON Task(Title);
 CREATE INDEX IF NOT EXISTS idx_task_tag ON Task(Tag);
 CREATE INDEX IF NOT EXISTS idx_task_priority ON Task(Priority);
 CREATE INDEX IF NOT EXISTS idx_task_enddate ON Task(EndDate);
+CREATE INDEX IF NOT EXISTS IDX_Subtask_ParentTaskId ON Subtask(ParentTaskId);
+CREATE INDEX idx_attachment_task ON Attachment(TaskId);
+CREATE INDEX idx_attachment_type ON Attachment(ContentType);
 
 -- TABLA SAVEDFILTER ----------------------------
 CREATE TABLE IF NOT EXISTS SavedFilter (

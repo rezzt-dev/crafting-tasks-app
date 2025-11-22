@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("craftingTask")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dc3c12f5c556df9ab8ea9cd2f0178b77b10e48c5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fb7044aa29726762d979baea9861b8aac88e174a")]
 [assembly: System.Reflection.AssemblyProductAttribute("craftingTask")]
 [assembly: System.Reflection.AssemblyTitleAttribute("craftingTask")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

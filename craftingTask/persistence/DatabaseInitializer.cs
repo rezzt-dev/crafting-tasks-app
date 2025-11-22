@@ -24,10 +24,58 @@ namespace craftingTask.persistence
         {
           ExecuteSqlScript();
         }
+        else
+        {
+          EnsureSubtaskTableExists();
+        }
       }
       catch (Exception ex)
       {
         throw new Exception($"Error al inicializar la base de datos: {ex.Message}", ex);
+      }
+    }
+
+    private static void EnsureSubtaskTableExists()
+    {
+      try
+      {
+        using (var connection = new SqliteConnection($"Data Source={DatabaseFileName};"))
+        {
+          connection.Open();
+
+          // Check if Subtask table exists
+          bool exists = false;
+          using (var command = new SqliteCommand(
+            "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='Subtask';",
+            connection))
+          {
+            var result = command.ExecuteScalar();
+            exists = result != null && Convert.ToInt32(result) > 0;
+          }
+
+          if (!exists)
+          {
+            using (var command = new SqliteCommand(
+             @"CREATE TABLE IF NOT EXISTS Subtask (
+                  SubtaskId INTEGER PRIMARY KEY AUTOINCREMENT,
+                  ParentTaskId INTEGER NOT NULL,
+                  Title TEXT NOT NULL,
+                  IsCompleted INTEGER DEFAULT 0,
+                  ""Order"" INTEGER NOT NULL,
+                  FOREIGN KEY (ParentTaskId) REFERENCES Task(TaskId) ON DELETE CASCADE
+                );
+                CREATE INDEX IF NOT EXISTS IDX_Subtask_ParentTaskId ON Subtask(ParentTaskId);",
+             connection))
+            {
+              command.ExecuteNonQuery();
+            }
+          }
+        }
+      }
+      catch (Exception ex)
+      {
+        // Log or handle error, but don't block app startup if possible, or throw if critical
+        throw new Exception($"Error al crear tabla Subtask: {ex.Message}", ex);
       }
     }
 

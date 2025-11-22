@@ -1,17 +1,29 @@
-using craftingTask.model;
+﻿using craftingTask.model;
 using craftingTask.model.objects;
 using craftingTask.model.services;
+using craftingTask.persistence;
 using craftingTask.persistence.managers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
-namespace craftingTask.view.windows.windows_dialogs
+namespace craftingTask.view.frame_pages
 {
-  public partial class SearchWindow : Window
+  /// <summary>
+  /// Lógica de interacción para SearchFilterPage.xaml
+  /// </summary>
+  public partial class SearchFilterPage : Page
   {
     private readonly TaskSearchService searchService;
     private readonly BoardManager boardManager;
@@ -20,7 +32,7 @@ namespace craftingTask.view.windows.windows_dialogs
     private readonly SavedFilterManager filterManager;
     private List<model.objects.Task> searchResults;
 
-    public SearchWindow()
+    public SearchFilterPage()
     {
       InitializeComponent();
       this.Dispatcher.Invoke(() => this.UpdateLayout(), System.Windows.Threading.DispatcherPriority.Loaded);
@@ -33,7 +45,15 @@ namespace craftingTask.view.windows.windows_dialogs
       searchResults = new List<model.objects.Task>();
 
       LoadData();
-      titleBar.MouseLeftButtonDown += TitleBar_MouseLeftButtonDown;
+    }
+
+    private void btnCloseSearchFilterFrame(object sender, RoutedEventArgs e)
+    {
+      Frame? parentFrame = HelpMethods.FindParentFrame(this);
+      if (parentFrame != null)
+      {
+        parentFrame.Content = null;
+      }
     }
 
     private void LoadData()
@@ -291,27 +311,6 @@ namespace craftingTask.view.windows.windows_dialogs
         MessageBox.Show($"Tarea seleccionada: {selectedTask.Title}\nID: {selectedTask.TaskId}\nPanel ID: {selectedTask.PanelId}",
                         "Información de Tarea", MessageBoxButton.OK, MessageBoxImage.Information);
       }
-    }
-
-    private void btnClose_Click(object sender, RoutedEventArgs e)
-    {
-      this.Close();
-    }
-
-    private void btnMinimizeWindowClick(object sender, RoutedEventArgs e)
-    {
-      this.WindowState = WindowState.Minimized;
-    }
-
-    private void btnCloseWindowClick(object sender, RoutedEventArgs e)
-    {
-      this.Close();
-    }
-
-    private void TitleBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-    {
-      if (e.ChangedButton == MouseButton.Left)
-        this.DragMove();
     }
   }
 }
