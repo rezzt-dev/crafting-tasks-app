@@ -55,12 +55,21 @@ namespace craftingTask.view.frame_pages
     {
       MonthlyPanel.Visibility = Visibility.Visible;
       YearlyPanel.Visibility = Visibility.Collapsed;
+      WeeklyPanel.Visibility = Visibility.Collapsed;
     }
 
     private void BtnYearly_Click(object sender, RoutedEventArgs e)
     {
       MonthlyPanel.Visibility = Visibility.Collapsed;
       YearlyPanel.Visibility = Visibility.Visible;
+      WeeklyPanel.Visibility = Visibility.Collapsed;
+    }
+
+    private void BtnWeekly_Click(object sender, RoutedEventArgs e)
+    {
+      MonthlyPanel.Visibility = Visibility.Collapsed;
+      YearlyPanel.Visibility = Visibility.Collapsed;
+      WeeklyPanel.Visibility = Visibility.Visible;
     }
 
 
@@ -103,6 +112,17 @@ namespace craftingTask.view.frame_pages
       }
     }
 
+    private void Task_Click(object sender, MouseButtonEventArgs e)
+    {
+      Border border = sender as Border ?? FindParent<Border>(sender as DependencyObject);
+      if (border == null) return;
+
+      if (border.DataContext is Task task)
+      {
+        vm.SelectTask(task);
+      }
+    }
+
     private T FindParent<T>(DependencyObject child) where T : DependencyObject
     {
       DependencyObject parent = VisualTreeHelper.GetParent(child);
@@ -121,6 +141,26 @@ namespace craftingTask.view.frame_pages
     private void PrevMonth_Click(object sender, MouseButtonEventArgs e)
     {
       vm.GoToPrevMonth();
+    }
+
+    private void NextYear_Click(object sender, MouseButtonEventArgs e)
+    {
+      vm.GoToNextYear();
+    }
+
+    private void PrevYear_Click(object sender, MouseButtonEventArgs e)
+    {
+      vm.GoToPrevYear();
+    }
+
+    private void NextWeek_Click(object sender, MouseButtonEventArgs e)
+    {
+      vm.GoToNextWeek();
+    }
+
+    private void PrevWeek_Click(object sender, MouseButtonEventArgs e)
+    {
+      vm.GoToPrevWeek();
     }
 
     private void CalendarItems_TargetUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)

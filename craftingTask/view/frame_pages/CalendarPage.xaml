@@ -1,116 +1,97 @@
-﻿<!-- Diseño personalizado moderno, redondeado y espacioso para CalendarPage.xaml -->
-<Page x:Class="craftingTask.view.frame_pages.CalendarPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local2="clr-namespace:craftingTask.view.helpers"
-      mc:Ignorable="d"
-      d:DesignWidth="1400" d:DesignHeight="900">
-
+﻿<Page x:Class="craftingTask.view.frame_pages.CalendarPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local2="clr-namespace:craftingTask.view.helpers" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:persistence="clr-namespace:craftingTask.persistence" d:DesignHeight="900" d:DesignWidth="1400" mc:Ignorable="d">
   <Page.Resources>
-    <local2:BoolToTodayBrush x:Key="BoolToTodayBrush"/>
-    
+    <local2:BoolToTodayBrush x:Key="BoolToTodayBrush" />
+    <persistence:PriorityToStringConverter x:Key="PriorityToStringConverter" />
     <Style x:Key="DayContainerStyle" TargetType="Border">
-      <Setter Property="Padding" Value="12"/>
-      <Setter Property="CornerRadius" Value="10"/>
-      <Setter Property="Background" Value="Transparent"/>
-      <Setter Property="BorderThickness" Value="1"/>
-      <Setter Property="Margin" Value="4"/>
+      <Setter Property="Padding" Value="12" />
+      <Setter Property="CornerRadius" Value="10" />
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="Margin" Value="4" />
       <Setter Property="Effect">
         <Setter.Value>
-          <DropShadowEffect Color="Black" BlurRadius="5" ShadowDepth="1" Opacity="0.15"/>
+          <DropShadowEffect BlurRadius="5" Opacity="0.15" ShadowDepth="1" Color="Black" />
         </Setter.Value>
       </Setter>
       <Style.Triggers>
         <DataTrigger Binding="{Binding IsSelected}" Value="True">
-          <Setter Property="Background" Value="#2E2E2E"/>
-          <Setter Property="BorderBrush" Value="#5A5A5A"/>
-          <Setter Property="BorderThickness" Value="1"/>
+          <Setter Property="Background" Value="#2E2E2E" />
+          <Setter Property="BorderBrush" Value="#5A5A5A" />
+          <Setter Property="BorderThickness" Value="1" />
         </DataTrigger>
         <DataTrigger Binding="{Binding IsToday}" Value="True">
-          <Setter Property="Background" Value="#2E2E2E"/>
-          <Setter Property="BorderBrush" Value="#5A5A5A"/>
-          <Setter Property="BorderThickness" Value="2"/>
+          <Setter Property="Background" Value="#2E2E2E" />
+          <Setter Property="BorderBrush" Value="#5A5A5A" />
+          <Setter Property="BorderThickness" Value="2" />
         </DataTrigger>
         <DataTrigger Binding="{Binding IsPlaceholder}" Value="True">
-          <Setter Property="Opacity" Value="0"/>
-          <Setter Property="IsHitTestVisible" Value="False"/>
+          <Setter Property="Opacity" Value="0" />
+          <Setter Property="IsHitTestVisible" Value="False" />
         </DataTrigger>
         <Trigger Property="IsMouseOver" Value="True">
-          <Setter Property="Background" Value="#3A3A3A"/>
-          <Setter Property="Cursor" Value="Hand"/>
+          <Setter Property="Background" Value="#3A3A3A" />
+          <Setter Property="Cursor" Value="Hand" />
         </Trigger>
       </Style.Triggers>
     </Style>
-
     <Style TargetType="ToolTip">
-      <Setter Property="OverridesDefaultStyle" Value="True"/>
-      <Setter Property="HasDropShadow" Value="True"/>
-      <Setter Property="Background" Value="Transparent"/>
+      <Setter Property="OverridesDefaultStyle" Value="True" />
+      <Setter Property="HasDropShadow" Value="True" />
+      <Setter Property="Background" Value="Transparent" />
       <Setter Property="Template">
         <Setter.Value>
           <ControlTemplate TargetType="ToolTip">
-            <Border Background="#2A2A2A"
-                        BorderBrush="#3A3A3A"
-                        BorderThickness="1"
-                        CornerRadius="10"
-                        Padding="10"
-                        SnapsToDevicePixels="True"
-                        Effect="{DynamicResource DropShadow}">
-              <ContentPresenter Content="{TemplateBinding Content}" 
-                                      Margin="0" 
-                                      HorizontalAlignment="Left"
-                                      VerticalAlignment="Top"/>
+            <Border Padding="10" Background="#2A2A2A" BorderBrush="#3A3A3A" BorderThickness="1" CornerRadius="10" Effect="{DynamicResource DropShadow}" SnapsToDevicePixels="True">
+              <ContentPresenter Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="{TemplateBinding Content}" />
             </Border>
           </ControlTemplate>
         </Setter.Value>
       </Setter>
     </Style>
-
-    <DropShadowEffect x:Key="DropShadow" BlurRadius="8" ShadowDepth="2" Color="Black" Opacity="0.25"/>
+    <DropShadowEffect x:Key="DropShadow" BlurRadius="8" Opacity="0.25" ShadowDepth="2" Color="Black" />
   </Page.Resources>
-
   <Border Background="{StaticResource SecondaryBackground}" CornerRadius="10">
     <Grid>
       <Grid.RowDefinitions>
-        <RowDefinition Height="30"/>
-        <RowDefinition Height="*"/>
+        <RowDefinition Height="30" />
+        <RowDefinition Height="*" />
       </Grid.RowDefinitions>
-
       <Grid Grid.Row="0">
         <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="420"/>
-          <ColumnDefinition Width="*"/>
-          <ColumnDefinition Width="40"/>
+          <ColumnDefinition Width="390" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="40" />
         </Grid.ColumnDefinitions>
-
-        <Border Grid.Column="0" Background="#202020" CornerRadius="10 0 0 0"/>
-        <Border Grid.Column="1" Background="#181818"/>
-        <Border Grid.Column="2" Background="#181818" CornerRadius="0,10,0,0"/>
-        <Button Grid.Column="2" x:Name="btnCloseFrame" Click="btnCloseCalendarFrame" Style="{StaticResource CloseFrameButton}" 
-                Width="15" Height="15" Margin="3,3,13,-7" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <Border Grid.Column="0" Background="#202020" CornerRadius="10 0 0 0" />
+        <Border Grid.Column="1" Background="#181818" />
+        <Border Grid.Column="2" Background="#181818" CornerRadius="0,10,0,0" />
+        <Button x:Name="btnCloseFrame" Grid.Column="2" Width="15" Height="15" Margin="3,3,13,-7" HorizontalAlignment="Right" VerticalAlignment="Center" Click="btnCloseCalendarFrame" Style="{StaticResource CloseFrameButton}">
+          <Viewbox>
+            <Canvas Width="16" Height="14" Margin="2" Opacity="0.5">
+              <Path Data="M2,2 L14,12" Stroke="Black" StrokeThickness="2" />
+              <Path Data="M14,2 L2,12" Stroke="Black" StrokeThickness="2" />
+            </Canvas>
+          </Viewbox>
+        </Button>
       </Grid>
-
       <Grid Grid.Row="1" Grid.RowSpan="2">
         <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="420"/>
-          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="390" />
+          <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-
         <!-- Panel izquierdo -->
-        <Border Grid.Column="0" Background="#202020" CornerRadius="0 0 0 10" Padding="30">
+        <Border Grid.Column="0" Padding="30" Background="#202020" CornerRadius="0 0 0 10">
           <StackPanel>
-            <TextBlock Text="{Binding SelectedDayString}" FontSize="42" FontWeight="Bold" Foreground="White"/>
-            <TextBlock Text="{Binding SelectedDayInfo}" FontSize="16" Margin="0 10 0 20" Foreground="#CBCBCB"/>
+            <TextBlock FontSize="42" FontWeight="Bold" Foreground="White" Text="{Binding SelectedDayString}" />
+            <TextBlock Margin="0,10,0,20" FontSize="16" Foreground="#CBCBCB" Text="{Binding SelectedDayInfo}" />
             <ItemsControl ItemsSource="{Binding SelectedDayTasks}">
               <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                  <Border Background="#2A2A2A" CornerRadius="10" BorderBrush="{Binding Color}" BorderThickness="2" Padding="12" Margin="0 0 0 14">
+                  <Border Margin="0,0,0,14" Padding="12" Background="#2A2A2A" BorderBrush="{Binding Color}" BorderThickness="2" CornerRadius="10">
                     <StackPanel>
-                      <TextBlock Text="{Binding Title}" FontSize="20" Foreground="White"/>
-                      <TextBlock Text="{Binding Description}" FontSize="13" Foreground="#B1B1B1" Margin="0 3 0 0"/>
-                      <TextBlock Text="{Binding EndDate, StringFormat='Hasta: {0:dd MMM yyyy}'}" FontSize="12" Foreground="#888" Margin="0 6 0 0"/>
+                      <TextBlock FontSize="20" Foreground="White" Text="{Binding Title}" />
+                      <TextBlock Margin="0,3,0,0" FontSize="13" Foreground="#B1B1B1" Text="{Binding Description}" />
+                      <TextBlock Margin="0,6,0,0" FontSize="12" Foreground="#888" Text="{Binding EndDate, StringFormat='Hasta: {0:dd MMM yyyy}'}" />
                     </StackPanel>
                   </Border>
                 </DataTemplate>
@@ -118,56 +99,47 @@
             </ItemsControl>
           </StackPanel>
         </Border>
-
-        <Border Grid.Column="1" Background="#181818" CornerRadius="0 0 10 0" Padding="40">
+        <Border Grid.Column="1" Padding="40" Background="#181818" CornerRadius="0 0 10 0">
           <Grid>
             <Grid.RowDefinitions>
-              <RowDefinition Height="40"/>
-              <RowDefinition Height="*"/>
+              <RowDefinition Height="40" />
+              <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-
             <!-- Botones de vista -->
-            <StackPanel Grid.Row="0" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Left">
-              <Button Content="Mensual" Width="100" Height="30" Click="BtnMonthly_Click" Margin="0,0,5,0"
-                      Style="{StaticResource FunctionButtonStyle}" Padding="4"/>
-              <Button Content="Anual" Width="100" Height="30" Click="BtnYearly_Click"
-                      Style="{StaticResource FunctionButtonStyle}" Padding="4"/>
+            <StackPanel Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
+              <Button Width="100" Height="30" Margin="0,0,2.5,0" Padding="4" Click="BtnWeekly_Click" Content="Semanal" Style="{StaticResource FunctionButtonStyle}" />
+              <Button Width="100" Height="30" Margin="2.5,0,2.5,0" Padding="4" Click="BtnMonthly_Click" Content="Mensual" Style="{StaticResource FunctionButtonStyle}" />
+              <Button Width="100" Height="30" Margin="2.5,0,0,0" Padding="4" Click="BtnYearly_Click" Content="Anual" Style="{StaticResource FunctionButtonStyle}" />
             </StackPanel>
-
-
-            <StackPanel Grid.Row="1" VerticalAlignment="Top"  Margin="0,100,0,0">
+            <StackPanel Grid.Row="1" Margin="0,100,0,0" VerticalAlignment="Top">
               <!-- Panel mensual -->
               <Grid x:Name="MonthlyPanel">
                 <!-- Título del mes -->
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 -70 0 25">
-                  <TextBlock Text="◀" FontSize="32" Margin="0 0 20 0" Cursor="Hand" Foreground="White" MouseDown="PrevMonth_Click"/>
-                  <TextBlock Text="{Binding CurrentMonthString}" FontSize="34" Foreground="White" FontWeight="SemiBold"/>
-                  <TextBlock Text="▶" FontSize="32" Margin="20 0 0 0" Cursor="Hand" Foreground="White" MouseDown="NextMonth_Click"/>
+                <StackPanel Margin="0,-70,0,25" HorizontalAlignment="Center" Orientation="Horizontal">
+                  <TextBlock Margin="0,0,20,0" Cursor="Hand" FontSize="32" Foreground="White" MouseDown="PrevMonth_Click" Text="◀" />
+                  <TextBlock FontSize="34" FontWeight="SemiBold" Foreground="White" Text="{Binding CurrentMonthString}" />
+                  <TextBlock Margin="20,0,0,0" Cursor="Hand" FontSize="32" Foreground="White" MouseDown="NextMonth_Click" Text="▶" />
                 </StackPanel>
-
                 <!-- Calendario Mensual -->
-                <Grid x:Name="CalendarGrid" Margin="0 0 0 40" Height="600">
-                  <ItemsControl x:Name="CalendarItems" ItemsSource="{Binding Days}" Margin="10">
+                <Grid x:Name="CalendarGrid" Height="600" Margin="0,0,0,40">
+                  <ItemsControl x:Name="CalendarItems" Margin="10" ItemsSource="{Binding Days}">
                     <ItemsControl.ItemsPanel>
                       <ItemsPanelTemplate>
-                        <UniformGrid Columns="7"/>
+                        <UniformGrid Columns="7" />
                       </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                       <DataTemplate>
-                        <Border Style="{StaticResource DayContainerStyle}" MouseDown="Day_Click"
-            DataContext="{Binding}">
+                        <Border DataContext="{Binding}" MouseDown="Day_Click" Style="{StaticResource DayContainerStyle}">
                           <ToolTipService.ToolTip>
-                            <TextBlock Text="{Binding TaskSummary}" TextWrapping="Wrap" Foreground="White" FontSize="14"/>
+                            <TextBlock FontSize="14" Foreground="White" Text="{Binding TaskSummary}" TextWrapping="Wrap" />
                           </ToolTipService.ToolTip>
                           <Grid>
-                            <TextBlock Text="{Binding DayNumber}" HorizontalAlignment="Center" VerticalAlignment="Center"
-                   FontSize="20" FontWeight="Bold" Foreground="White"/>
-                            <ItemsControl ItemsSource="{Binding TaskDots}" HorizontalAlignment="Right" 
-                      VerticalAlignment="Bottom" Margin="0 0 4 4">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="White" Text="{Binding DayNumber}" />
+                            <ItemsControl Margin="0,0,4,4" HorizontalAlignment="Right" VerticalAlignment="Bottom" ItemsSource="{Binding TaskDots}">
                               <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                  <Ellipse Width="8" Height="8" Fill="{Binding Color}" Margin="1"/>
+                                  <Ellipse Width="8" Height="8" Margin="1" Fill="{Binding Color}" />
                                 </DataTemplate>
                               </ItemsControl.ItemTemplate>
                             </ItemsControl>
@@ -178,42 +150,48 @@
                   </ItemsControl>
                 </Grid>
               </Grid>
-
               <!-- Panel anual -->
               <Grid x:Name="YearlyPanel" Visibility="Collapsed">
-                <ScrollViewer Height="600" VerticalScrollBarVisibility="Auto" Margin="0 0 0 0">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Margin="0,-70,0,25" HorizontalAlignment="Center" Orientation="Horizontal">
+                  <TextBlock Margin="0,0,20,0" Cursor="Hand" FontSize="32" Foreground="White" MouseDown="PrevYear_Click" Text="◀" />
+                  <TextBlock FontSize="34" FontWeight="SemiBold" Foreground="White" Text="{Binding CurrentYear}" />
+                  <TextBlock Margin="20,0,0,0" Cursor="Hand" FontSize="32" Foreground="White" MouseDown="NextYear_Click" Text="▶" />
+                </StackPanel>
+                <ScrollViewer Grid.Row="1" Height="600" Margin="0,0,0,0" VerticalScrollBarVisibility="Auto">
                   <ScrollViewer.Resources>
-                    <Style TargetType="ScrollBar" BasedOn="{StaticResource DarkScrollBarStyle}" />
+                    <Style BasedOn="{StaticResource DarkScrollBarStyle}" TargetType="ScrollBar" />
                   </ScrollViewer.Resources>
                   <StackPanel>
                     <ItemsControl ItemsSource="{Binding YearMonths}">
                       <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                          <UniformGrid Columns="4"/>
+                          <UniformGrid Columns="4" />
                         </ItemsPanelTemplate>
                       </ItemsControl.ItemsPanel>
-
                       <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                          <Border Background="#2A2A2A" CornerRadius="10" Padding="10" Margin="10">
+                          <Border Margin="10" Padding="10" Background="#2A2A2A" CornerRadius="10">
                             <StackPanel>
-                              <TextBlock Text="{Binding MonthName}" FontSize="16" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="0 0 0 10"/>
-
+                              <TextBlock Margin="0,0,0,10" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="White" Text="{Binding MonthName}" />
                               <ItemsControl ItemsSource="{Binding Days}">
                                 <ItemsControl.ItemsPanel>
                                   <ItemsPanelTemplate>
-                                    <UniformGrid Columns="7"/>
+                                    <UniformGrid Columns="7" />
                                   </ItemsPanelTemplate>
                                 </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate>
                                   <DataTemplate>
-                                    <Border Margin="1" CornerRadius="3" Background="{Binding IsToday, Converter={StaticResource BoolToTodayBrush}}">
+                                    <Border Margin="1" Background="{Binding IsToday, Converter={StaticResource BoolToTodayBrush}}" CornerRadius="3">
                                       <Grid>
-                                        <TextBlock Text="{Binding DayNumber}" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
-                                        <ItemsControl ItemsSource="{Binding TaskDots}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 2 2">
+                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Foreground="White" Text="{Binding DayNumber}" />
+                                        <ItemsControl Margin="0,0,2,2" HorizontalAlignment="Right" VerticalAlignment="Bottom" ItemsSource="{Binding TaskDots}">
                                           <ItemsControl.ItemTemplate>
                                             <DataTemplate>
-                                              <Ellipse Width="5" Height="5" Fill="{Binding Color}" Margin="1"/>
+                                              <Ellipse Width="5" Height="5" Margin="1" Fill="{Binding Color}" />
                                             </DataTemplate>
                                           </ItemsControl.ItemTemplate>
                                         </ItemsControl>
@@ -222,7 +200,6 @@
                                   </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                               </ItemsControl>
-
                             </StackPanel>
                           </Border>
                         </DataTemplate>
@@ -230,6 +207,66 @@
                     </ItemsControl>
                   </StackPanel>
                 </ScrollViewer>
+              </Grid>
+              <!-- Panel Semanal -->
+              <Grid x:Name="WeeklyPanel" Visibility="Collapsed" Margin="0,-20,0,0">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Margin="0,-70,0,25" HorizontalAlignment="Center" Orientation="Horizontal">
+                  <TextBlock Margin="0,0,20,0" Cursor="Hand" FontSize="32" Foreground="White" MouseDown="PrevWeek_Click" Text="◀" />
+                  <TextBlock FontSize="34" FontWeight="SemiBold" Foreground="White" Text="{Binding CurrentWeekString}" />
+                  <TextBlock Margin="20,0,0,0" Cursor="Hand" FontSize="32" Foreground="White" MouseDown="NextWeek_Click" Text="▶" />
+                </StackPanel>
+                <Grid Grid.Row="1" Height="700" Margin="0,0,0,40">
+                  <ItemsControl Margin="10" ItemsSource="{Binding WeekDays}">
+                    <ItemsControl.ItemsPanel>
+                      <ItemsPanelTemplate>
+                        <UniformGrid Columns="1" Rows="7" />
+                      </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                      <DataTemplate>
+                        <Border Margin="4" VerticalAlignment="Stretch" Style="{StaticResource DayContainerStyle}">
+                          <Grid>
+                            <Grid.ColumnDefinitions>
+                              <ColumnDefinition Width="120" />
+                              <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Margin="10,0" VerticalAlignment="Center">
+                              <TextBlock FontSize="16" FontWeight="Bold" Foreground="White" Text="{Binding DayName}" TextAlignment="Right" />
+                              <TextBlock Margin="0,2,0,0" FontSize="12" Foreground="#AAAAAA" Text="{Binding Date, StringFormat='dd MMM'}" TextAlignment="Right" />
+                            </StackPanel>
+                            <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                              <ItemsControl ItemsSource="{Binding Tasks}">
+                                <ItemsControl.ItemsPanel>
+                                  <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" />
+                                  </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                  <DataTemplate>
+                                    <Border Width="200" Margin="0,0,10,0" Padding="10" Background="{StaticResource TaskBackground}" BorderBrush="{Binding Color}" BorderThickness="1" CornerRadius="8" Cursor="Hand" MouseDown="Task_Click">
+                                      <TextBlock VerticalAlignment="Center" FontSize="14" FontWeight="SemiBold" Foreground="{StaticResource TaskTitleForeground}" TextTrimming="CharacterEllipsis">
+                                        <TextBlock.Text>
+                                          <MultiBinding StringFormat="{}{0} | {1}">
+                                            <Binding Path="Title" />
+                                            <Binding Converter="{StaticResource PriorityToStringConverter}" Path="Priority" />
+                                          </MultiBinding>
+                                        </TextBlock.Text>
+                                      </TextBlock>
+                                    </Border>
+                                  </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                              </ItemsControl>
+                            </ScrollViewer>
+                          </Grid>
+                        </Border>
+                      </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                  </ItemsControl>
+                </Grid>
               </Grid>
             </StackPanel>
           </Grid>

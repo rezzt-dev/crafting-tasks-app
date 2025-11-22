@@ -117,6 +117,26 @@ namespace craftingTask
       this.boardsFrame.Content = null;
     }
 
+    private void EditBoard_Click(object sender, RoutedEventArgs e)
+    {
+      if (sender is MenuItem menuItem && menuItem.DataContext is Board board)
+      {
+        EditBoardDialog editBoardDialog = new EditBoardDialog(board);
+        editBoardDialog.ShowDialog();
+        RefreshBoards();
+      }
+    }
+
+    private void RefreshBoards()
+    {
+      BoardList.Clear();
+      var boards = mainBoardManager.GetAllBoards();
+      foreach (var board in boards)
+      {
+        BoardList.Add(board);
+      }
+    }
+
     private void btnCalendarView_Click(object sender, RoutedEventArgs e)
     {
       CalendarPage calendarPage = new CalendarPage();

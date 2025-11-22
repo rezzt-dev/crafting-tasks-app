@@ -5,31 +5,80 @@ using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace craftingTask.model.objects
 {
-  public class Board
+  public class Board : INotifyPropertyChanged
   {
+    private string _name = string.Empty;
+    private string _color = string.Empty;
+    private DateTime _modificationDate;
+
     public long BoardId { get; set; }
-    public string Name { get; set; }
-    public string Color { get; set; }
+
+    public string Name
+    {
+      get => _name;
+      set
+      {
+        if (_name != value)
+        {
+          _name = value;
+          OnPropertyChanged(nameof(Name));
+        }
+      }
+    }
+
+    public string Color
+    {
+      get => _color;
+      set
+      {
+        if (_color != value)
+        {
+          _color = value;
+          OnPropertyChanged(nameof(Color));
+        }
+      }
+    }
+
     public DateTime CreationDate { get; set; }
-    public DateTime ModificationDate {  get; set; }
+
+    public DateTime ModificationDate
+    {
+      get => _modificationDate;
+      set
+      {
+        if (_modificationDate != value)
+        {
+          _modificationDate = value;
+          OnPropertyChanged(nameof(ModificationDate));
+        }
+      }
+    }
 
     private List<Board> boardList { get; set; }
     private long LastBoardId { get; set; }
     private BoardManager boardManager { get; set; }
 
-    public Board ()
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    protected virtual void OnPropertyChanged(string propertyName)
+    {
+      PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    public Board()
     {
       boardManager = new BoardManager();
-      boardList = new List<Board> ();
+      boardList = new List<Board>();
 
       LastBoardId = boardManager.GetBoardLastId();
       this.BoardId = LastBoardId;
     }
 
-    public Board (string inputName, string inputColor)
+    public Board(string inputName, string inputColor)
     {
       boardManager = new BoardManager();
       boardList = new List<Board>();
@@ -42,7 +91,7 @@ namespace craftingTask.model.objects
       this.ModificationDate = DateTime.UtcNow;
     }
 
-    public Board (string inputName, string inputColor, DateTime inputModificationDate)
+    public Board(string inputName, string inputColor, DateTime inputModificationDate)
     {
       boardManager = new BoardManager();
       boardList = new List<Board>();
@@ -55,7 +104,7 @@ namespace craftingTask.model.objects
       this.CreationDate = DateTime.UtcNow;
     }
 
-    public Board (long inputBoardId, string inputName, string inputColor, DateTime inputCreationDate, DateTime inputModificationDate)
+    public Board(long inputBoardId, string inputName, string inputColor, DateTime inputCreationDate, DateTime inputModificationDate)
     {
       boardManager = new BoardManager();
       boardList = new List<Board>();

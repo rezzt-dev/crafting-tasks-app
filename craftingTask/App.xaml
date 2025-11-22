@@ -4,8 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:craftingTask"
     StartupUri="view/windows/MainWindow.xaml">
-    <Application.Resources>
-        <FontFamily x:Key="Poppins">./resources/fonts/#Poppins</FontFamily>
+  <Application.Resources>
+    <FontFamily x:Key="Poppins">./resources/fonts/#Poppins</FontFamily>
 
         <Style TargetType="{x:Type Control}">
             <Setter Property="FontFamily" Value="{StaticResource Poppins}" />
@@ -1562,7 +1562,40 @@
             </Setter>
         </Style>
 
-        <!--  estilo moderno para DataGrid  -->
+    <Style x:Key="ModernDarkDataGridColumnHeaderStyle" TargetType="DataGridColumnHeader">
+      <Setter Property="Background" Value="#1E1E1E" />
+      <Setter Property="Foreground" Value="#FFFFFF" />
+      <Setter Property="BorderBrush" Value="#3A3A3A" />
+      <Setter Property="BorderThickness" Value="0,0,0,2" />
+      <Setter Property="Padding" Value="12,10" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+      <Setter Property="FontSize" Value="14" />
+      <Setter Property="HorizontalContentAlignment" Value="Left" />
+      <Setter Property="VerticalContentAlignment" Value="Center" />
+      <Setter Property="Height" Value="45" />
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="DataGridColumnHeader">
+            <Border
+                    x:Name="HeaderBorder"
+                    Padding="{TemplateBinding Padding}"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}">
+              <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </Border>
+
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="HeaderBorder" Property="Background" Value="#2D2D2D" />
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <!--  estilo moderno para DataGrid  -->
         <Style x:Key="ModernDarkDataGridStyle" TargetType="DataGrid">
             <Setter Property="Background" Value="{StaticResource SecondaryBackground}" />
             <Setter Property="Foreground" Value="{StaticResource MainForeground}" />
@@ -1581,7 +1614,7 @@
             <Setter Property="IsReadOnly" Value="True" />
             <Setter Property="RowHeight" Value="42" />
             <Setter Property="ColumnHeaderHeight" Value="45" />
-            <Setter Property="ColumnHeaderStyle" Value="{StaticResource ModernDarkDataGridColumnHeaderStyle}" />
+      <Setter Property="ColumnHeaderStyle" Value="{StaticResource ModernDarkDataGridColumnHeaderStyle}" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="DataGrid">
@@ -1612,38 +1645,6 @@
         </Style>
 
         <!--  Estilo para el encabezado de columna del DataGrid  -->
-        <Style x:Key="ModernDarkDataGridColumnHeaderStyle" TargetType="DataGridColumnHeader">
-            <Setter Property="Background" Value="#1E1E1E" />
-            <Setter Property="Foreground" Value="#FFFFFF" />
-            <Setter Property="BorderBrush" Value="#3A3A3A" />
-            <Setter Property="BorderThickness" Value="0,0,0,2" />
-            <Setter Property="Padding" Value="12,10" />
-            <Setter Property="FontWeight" Value="SemiBold" />
-            <Setter Property="FontSize" Value="14" />
-            <Setter Property="HorizontalContentAlignment" Value="Left" />
-            <Setter Property="VerticalContentAlignment" Value="Center" />
-            <Setter Property="Height" Value="45" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="DataGridColumnHeader">
-                        <Border
-                            x:Name="HeaderBorder"
-                            Padding="{TemplateBinding Padding}"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                        </Border>
-
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="HeaderBorder" Property="Background" Value="#2D2D2D" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
 
         <!--  Estilo para las celdas del DataGrid  -->
         <Style x:Key="ModernDarkDataGridCellStyle" TargetType="DataGridCell">

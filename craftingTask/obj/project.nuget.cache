@@ -1,19 +1,19 @@
 {
   "version": 2,
-  "dgSpecHash": "x0cmvs5mDrU=",
+  "dgSpecHash": "lr0AQ4AOXEY=",
   "success": true,
-  "projectFilePath": "C:\\Users\\conta\\repositorios\\projects-repositories\\crafting-tasks-app\\craftingTask\\craftingTask.csproj",
+  "projectFilePath": "D:\\repositorios\\aplications-repositorios\\crafting-tasks-app\\craftingTask\\craftingTask.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\conta\\.nuget\\packages\\gong-wpf-dragdrop\\2.3.2\\gong-wpf-dragdrop.2.3.2.nupkg.sha512",
-    "C:\\Users\\conta\\.nuget\\packages\\lightimage.dragdrop\\0.5.5\\lightimage.dragdrop.0.5.5.nupkg.sha512",
-    "C:\\Users\\conta\\.nuget\\packages\\lightimage.dragdrop.wpf\\0.5.5\\lightimage.dragdrop.wpf.0.5.5.nupkg.sha512",
-    "C:\\Users\\conta\\.nuget\\packages\\microsoft.data.sqlite.core\\9.0.10\\microsoft.data.sqlite.core.9.0.10.nupkg.sha512",
-    "C:\\Users\\conta\\.nuget\\packages\\sqlite\\3.13.0\\sqlite.3.13.0.nupkg.sha512",
-    "C:\\Users\\conta\\.nuget\\packages\\sqlitepclraw.bundle_green\\2.1.11\\sqlitepclraw.bundle_green.2.1.11.nupkg.sha512",
-    "C:\\Users\\conta\\.nuget\\packages\\sqlitepclraw.core\\2.1.11\\sqlitepclraw.core.2.1.11.nupkg.sha512",
-    "C:\\Users\\conta\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.11\\sqlitepclraw.lib.e_sqlite3.2.1.11.nupkg.sha512",
-    "C:\\Users\\conta\\.nuget\\packages\\sqlitepclraw.provider.e_sqlite3\\2.1.11\\sqlitepclraw.provider.e_sqlite3.2.1.11.nupkg.sha512",
-    "C:\\Users\\conta\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512"
+    "C:\\Users\\rezzt\\.nuget\\packages\\gong-wpf-dragdrop\\2.3.2\\gong-wpf-dragdrop.2.3.2.nupkg.sha512",
+    "C:\\Users\\rezzt\\.nuget\\packages\\lightimage.dragdrop\\0.5.5\\lightimage.dragdrop.0.5.5.nupkg.sha512",
+    "C:\\Users\\rezzt\\.nuget\\packages\\lightimage.dragdrop.wpf\\0.5.5\\lightimage.dragdrop.wpf.0.5.5.nupkg.sha512",
+    "C:\\Users\\rezzt\\.nuget\\packages\\microsoft.data.sqlite.core\\9.0.10\\microsoft.data.sqlite.core.9.0.10.nupkg.sha512",
+    "C:\\Users\\rezzt\\.nuget\\packages\\sqlite\\3.13.0\\sqlite.3.13.0.nupkg.sha512",
+    "C:\\Users\\rezzt\\.nuget\\packages\\sqlitepclraw.bundle_green\\2.1.11\\sqlitepclraw.bundle_green.2.1.11.nupkg.sha512",
+    "C:\\Users\\rezzt\\.nuget\\packages\\sqlitepclraw.core\\2.1.11\\sqlitepclraw.core.2.1.11.nupkg.sha512",
+    "C:\\Users\\rezzt\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.11\\sqlitepclraw.lib.e_sqlite3.2.1.11.nupkg.sha512",
+    "C:\\Users\\rezzt\\.nuget\\packages\\sqlitepclraw.provider.e_sqlite3\\2.1.11\\sqlitepclraw.provider.e_sqlite3.2.1.11.nupkg.sha512",
+    "C:\\Users\\rezzt\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512"
   ],
   "logs": []
 }

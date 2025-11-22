@@ -33,6 +33,7 @@ namespace craftingTask.model
 
     public List<TaskDot> TaskDots { get; set; }
     public string DayNumber { get; set; }
+    public string DayName { get; set; }
     public Brush Foreground { get; set; }
     public Brush Background { get; set; }
 
@@ -41,7 +42,7 @@ namespace craftingTask.model
     public bool IsToday { get; set; } = false;
 
     public event PropertyChangedEventHandler? PropertyChanged;
-    }
+  }
 
   public class TaskDot
   {

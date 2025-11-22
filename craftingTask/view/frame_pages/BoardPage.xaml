@@ -56,7 +56,14 @@
           <Button x:Name="btnCreateTask" Grid.Column="0" Margin="0,0,2.5,0" Padding="0,4" VerticalAlignment="Center" Click="btnCreateTask_Click" Content="Crear Tarea" Style="{StaticResource FunctionButtonStyle}" />
           <Button x:Name="btnArchiveTasks" Grid.Column="1" Margin="2.5,0,0,0" Padding="0,4" VerticalAlignment="Center" Click="btnArchiveTasks_Click" Content="Archivar Tareas" Style="{StaticResource FunctionButtonStyle}" />
         </Grid>
-        <Button x:Name="btnCloseFrame" Grid.Column="1" Width="15" Height="15" Margin="3" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnCloseBoardFrame" Style="{StaticResource CloseFrameButton}" />
+        <Button x:Name="btnCloseFrame" Grid.Column="1" Width="15" Height="15" Margin="3" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnCloseBoardFrame" Style="{StaticResource CloseFrameButton}">
+          <Viewbox>
+            <Canvas Width="16" Height="14" Margin="2" Opacity="0.5">
+              <Path Stroke="Black" StrokeThickness="2" Data="M2,2 L14,12" />
+              <Path Stroke="Black" StrokeThickness="2" Data="M14,2 L2,12" />
+            </Canvas>
+          </Viewbox>
+        </Button>
       </Grid>
 
       <Grid Grid.Row="2">

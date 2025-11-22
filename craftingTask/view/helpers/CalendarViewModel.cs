@@ -15,11 +15,21 @@ namespace craftingTask.view.helpers
   public class CalendarViewModel : INotifyPropertyChanged
   {
     public ObservableCollection<CalendarDay> Days { get; set; }
+    public ObservableCollection<CalendarDay> WeekDays { get; set; }
     public ObservableCollection<Task> SelectedDayTasks { get; set; }
     public ObservableCollection<YearMonth> YearMonths { get; set; }
 
     public string CurrentMonthString => new DateTime(CurrentYear, CurrentMonth, 1)
         .ToString("MMMM yyyy", new CultureInfo("es-ES")).ToUpper();
+
+    public string CurrentWeekString
+    {
+      get
+      {
+        int weekNum = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(CurrentWeekStart, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+        return $"{CurrentWeekStart.Year} | Semana {weekNum}";
+      }
+    }
 
     private string selectedDayString;
     public string SelectedDayString
@@ -43,8 +53,22 @@ namespace craftingTask.view.helpers
       }
     }
 
-    public int CurrentYear { get; set; }
+    private int currentYear;
+    public int CurrentYear
+    {
+      get => currentYear;
+      set
+      {
+        currentYear = value;
+        OnPropertyChanged(nameof(CurrentYear));
+      }
+    }
+
     public int CurrentMonth { get; set; }
+
+    public DateTime CurrentWeekStart { get; set; }
+
+
 
     private List<Task> allTasks;
 
@@ -69,8 +93,15 @@ namespace craftingTask.view.helpers
       CurrentMonth = DateTime.Now.Month;
 
       Days = new ObservableCollection<CalendarDay>();
+      WeekDays = new ObservableCollection<CalendarDay>();
       GenerateCalendar(CurrentYear, CurrentMonth);
       GenerateYearView(CurrentYear);
+
+      // Initialize Week View to current week
+      DateTime today = DateTime.Today;
+      int diff = (7 + (today.DayOfWeek - DayOfWeek.Monday)) % 7;
+      CurrentWeekStart = today.AddDays(-1 * diff).Date;
+      GenerateWeekView(CurrentWeekStart);
     }
 
     public void GenerateCalendar(int year, int month)
@@ -192,6 +223,19 @@ namespace craftingTask.view.helpers
       OnPropertyChanged(nameof(SelectedDayTasks));
     }
 
+    public void SelectTask(Task task)
+    {
+      var culture = new CultureInfo("es-ES");
+      string dayName = culture.TextInfo.ToTitleCase(task.EndDate.ToString("dddd", culture));
+      SelectedDayString = $"{dayName} {task.EndDate.Day}";
+      SelectedDayInfo = task.EndDate.ToString("dd MMMM yyyy", culture);
+
+      SelectedDayTasks.Clear();
+      SelectedDayTasks.Add(task);
+
+      OnPropertyChanged(nameof(SelectedDayTasks));
+    }
+
     public void GoToNextMonth()
     {
       TransitionDirection = "Left";
@@ -210,6 +254,53 @@ namespace craftingTask.view.helpers
 
       GenerateCalendar(CurrentYear, CurrentMonth);
       OnPropertyChanged(nameof(CurrentMonthString));
+    }
+
+    public void GoToNextYear()
+    {
+      CurrentYear++;
+      GenerateYearView(CurrentYear);
+    }
+
+    public void GoToPrevYear()
+    {
+      CurrentYear--;
+      GenerateYearView(CurrentYear);
+    }
+
+    public void GenerateWeekView(DateTime weekStart)
+    {
+      if (WeekDays == null) WeekDays = new ObservableCollection<CalendarDay>();
+      else WeekDays.Clear();
+
+      for (int i = 0; i < 7; i++)
+      {
+        DateTime date = weekStart.AddDays(i);
+        var tasksForDay = new ObservableCollection<Task>(allTasks.Where(t => t.EndDate.Date == date.Date && t.StatusId != 4).ToList());
+
+        WeekDays.Add(new CalendarDay
+        {
+          Date = date,
+          DayNumber = date.Day.ToString(),
+          DayName = date.ToString("dddd", new CultureInfo("es-ES")).ToUpper(),
+          Tasks = tasksForDay,
+          IsToday = date.Date == DateTime.Now.Date
+        });
+      }
+      OnPropertyChanged(nameof(WeekDays));
+      OnPropertyChanged(nameof(CurrentWeekString));
+    }
+
+    public void GoToNextWeek()
+    {
+      CurrentWeekStart = CurrentWeekStart.AddDays(7);
+      GenerateWeekView(CurrentWeekStart);
+    }
+
+    public void GoToPrevWeek()
+    {
+      CurrentWeekStart = CurrentWeekStart.AddDays(-7);
+      GenerateWeekView(CurrentWeekStart);
     }
 
     public event PropertyChangedEventHandler PropertyChanged;
